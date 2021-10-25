@@ -4,10 +4,10 @@
     <label class="slds-form-element__label" for="combobox-id-1" id="combobox-label-id-33" style="text-indent: 10px">Relate To</label>
     <div class="slds-form-element__control">
       <div class="slds-combobox_container">
-        <div class="slds-combobox slds-dropdown-trigger slds-dropdown-trigger_click slds-is-open" aria-expanded="true" aria-haspopup="listbox" role="combobox" onclick={handleChange}>
+        <div class={boxClass} aria-expanded="true" aria-haspopup="listbox" role="combobox" >
           <div class="slds-combobox__form-element slds-input-has-icon slds-input-has-icon_right" role="none">
             <div class="defaultClass">
-              <input type="text" class="slds-input slds-combobox__input" id="combobx-id-1" aria-autocomplete="list" aria-controls="listbox-id-1" aria-expanded="false" aria-haspopup="listbox" autocomplete="off" role="combobox" placeholder="Search...">
+              <input type="text" class="slds-input slds-combobox__input" id="combobx-id-1" onclick={handleClick} onblur={onBlur} aria-autocomplete="list" aria-controls="listbox-id-1" aria-expanded="false" aria-haspopup="listbox" autocomplete="off" role="combobox" placeholder="Search...">
               <span class="slds-icon_container">
                 <lightning-icon icon-name="utility:search" class="slds-icon-utility-search slds-input__icon slds-input__icon_right slds-searchIcon" alternative-text="Approved" size="x-small"></lightning-icon>
               </span>
