@@ -32,7 +32,7 @@
             </div>
           </div>
         </div>
-        <lightning-card title="Filters" class="slds-m-left_small">
+        <lightning-card title="Filters:" class="slds-m-left_small">
           <lightning-combobox
                   name="limit"
                   label="Limit"
@@ -43,6 +43,16 @@
                   class="slds-m-horizontal_xx-large">
               </lightning-combobox>
           <p class="slds-m-horizontal_xx-large">Selected limit is: {limit}</p>
+          <lightning-combobox
+                  name="order"
+                  label="Order of Search"
+                  value={order}
+                  placeholder="Select order of search"
+                  options={optionsOfOrder}
+                  onchange={handleChangeOrder}
+                  class="slds-m-horizontal_xx-large">
+                </lightning-combobox>
+            <p class="slds-m-horizontal_xx-large">Selected order is: {order}</p>
       </lightning-card>
       </div>
     </div>
