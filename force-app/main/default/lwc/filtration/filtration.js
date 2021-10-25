@@ -1,7 +1,8 @@
 import { LightningElement } from 'lwc';
 
 export default class Filtration extends LightningElement {
-    value = '3';
+
+    limit = '3';
 
     get options() {
         return [
@@ -12,6 +13,6 @@ export default class Filtration extends LightningElement {
     }
 
     handleChange(event) {
-        this.value = event.detail.value;
+        this.limit = event.detail.value;
     }
 }
