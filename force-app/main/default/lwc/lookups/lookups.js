@@ -7,6 +7,10 @@ export default class Lookups extends LightningElement {
     sObjectName;
 
     @wire(getObjectList, {sObjectName : '$sObjectName'})
-    accounts;
+    objects;
+
+    handleChange(event) {
+        this.objects = event.detail.value;
+    }
     
 }

@@ -4,7 +4,7 @@
     <label class="slds-form-element__label" for="combobox-id-1" id="combobox-label-id-33" style="text-indent: 10px">Relate To</label>
     <div class="slds-form-element__control">
       <div class="slds-combobox_container">
-        <div class="slds-combobox slds-dropdown-trigger slds-dropdown-trigger_click slds-is-open" aria-expanded="true" aria-haspopup="listbox" role="combobox">
+        <div class="slds-combobox slds-dropdown-trigger slds-dropdown-trigger_click" aria-expanded="true" aria-haspopup="listbox" role="combobox" onclick={handleChange}>
           <div class="slds-combobox__form-element slds-input-has-icon slds-input-has-icon_right" role="none">
             <div class="defaultClass">
               <input type="text" class="slds-input slds-combobox__input" id="combobx-id-1" aria-autocomplete="list" aria-controls="listbox-id-1" aria-expanded="false" aria-haspopup="listbox" autocomplete="off" role="combobox" placeholder="Search...">
@@ -14,24 +14,25 @@
             </div>
             <div id="listbox-id-1" class="slds-dropdown slds-dropdown_length-with-icon-7 slds-dropdown_fluid" role="listbox">
               <ul class="slds-listbox slds-listbox_vertical" role="presentation">
-                <template if:true={accounts.data}>
-                  <template for:each={accounts.data} for:item="account">
-                    <li role="presentation" class="slds-listbox__item" key={account.Id}>
-                      <div aria-selected="true" id={account.Id} class="slds-media slds-listbox__option slds-listbox__option_entity slds-listbox__option_has-meta" role="option" tabindex="0">
+                <template if:true={objects.data}>
+                  <template for:each={objects.data} for:item="object">
+                    <li role="presentation" class="slds-listbox__item" key={object.Id}>
+                      <div aria-selected="true" id={object.Id} class="slds-media slds-listbox__option slds-listbox__option_entity slds-listbox__option_has-meta" role="option" tabindex="0">
                         <span class="slds-media__body">
-                          <span class="slds-listbox__option-text slds-listbox__option-text_entity slds_optiontxt">{account.Name}</span>
+                          <span class="slds-listbox__option-text slds-listbox__option-text_entity slds_optiontxt">{object.Name}</span>
                         </span>
                       </div>
                     </li>
                   </template>
                 </template>
-                <template if:false={accounts.data}>
+                <template if:false={objects.data}>
                   <div>Error</div>
                 </template>
               </ul>
             </div>
           </div>
         </div>
+        <c-filtration></c-filtration>
       </div>
     </div>
   </div>
