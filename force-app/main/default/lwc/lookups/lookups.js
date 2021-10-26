@@ -11,7 +11,7 @@ export default class Lookups extends LightningElement {
     order = 'ASC';
 
     @track
-    boxClass = 'slds-combobox slds-dropdown-trigger slds-dropdown-trigger_click';
+    boxClass = 'slds-combobox slds-m-left_small slds-m-right_small slds-dropdown-trigger slds-dropdown-trigger_click';
 
     @track
     blurTimeout;
@@ -45,11 +45,11 @@ export default class Lookups extends LightningElement {
     }
 
     handleClick() {
-        this.boxClass = 'slds-combobox slds-dropdown-trigger slds-dropdown-trigger_click slds-has-focus slds-is-open';
+        this.boxClass = 'slds-combobox slds-m-left_small slds-m-right_small slds-dropdown-trigger slds-dropdown-trigger_click slds-has-focus slds-is-open';
     }
 
     onBlur() {
-        this.blurTimeout = setTimeout(() => {this.boxClass = 'slds-combobox slds-dropdown-trigger slds-dropdown-trigger_click slds-has-focus', 300});
+        this.blurTimeout = setTimeout(() => {this.boxClass = 'slds-combobox slds-m-left_small slds-m-right_small slds-dropdown-trigger slds-dropdown-trigger_click slds-has-focus', 300});
     }
     
 }
