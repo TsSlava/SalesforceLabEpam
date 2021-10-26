@@ -19,7 +19,16 @@
                     <li role="presentation" class="slds-listbox__item" key={object.Id}>
                       <div aria-selected="true" id={object.Id} class="slds-media slds-listbox__option slds-listbox__option_entity slds-listbox__option_has-meta" role="option" tabindex="0">
                         <span class="slds-media__body">
-                          <span class="slds-listbox__option-text slds-listbox__option-text_entity slds_optiontxt">{object.Name}</span>
+                          <span class="slds-listbox__option-text slds-text-heading_small slds-listbox__option-text_entity slds_optiontxt">{object.Name}</span>
+                          <template if:true={object.Phone}>
+                            <span class="slds-listbox__option-text slds-listbox__option-text_entity slds_optiontxt">{object.Phone}</span>
+                          </template>
+                          <template if:true={object.Industry}>
+                            <span class="slds-listbox__option-text slds-listbox__option-text_entity slds_optiontxt">Industry: {object.Industry}</span>
+                          </template>
+                          <template if:true={object.BillingCity}>
+                            <span class="slds-listbox__option-text slds-listbox__option-text_entity slds_optiontxt">City: {object.BillingCity}</span>
+                          </template>
                         </span>
                       </div>
                     </li>
@@ -40,8 +49,8 @@
                   placeholder="Select Limit"
                   options={options}
                   onchange={handleChange}
-                  class="slds-m-left_medium slds-size_1-of-7">
-              </lightning-combobox>
+                  class="slds-m-left_medium slds-size_1-of-4">
+            </lightning-combobox>
           <lightning-combobox
                   name="order"
                   label="Order of Search:"
@@ -49,6 +58,15 @@
                   placeholder="Select order of search"
                   options={optionsOfOrder}
                   onchange={handleChangeOrder}
+                  class="slds-m-left_medium slds-p-top_small slds-size_1-of-2">
+                </lightning-combobox>
+          <lightning-combobox
+                  name="additionalInformation"
+                  label="Additional Info:"
+                  value={addInfo}
+                  placeholder="No additional information"
+                  options={optionsAddInfo}
+                  onchange={handleAddInfo}
                   class="slds-m-left_medium slds-p-top_small slds-size_1-of-2">
                 </lightning-combobox>
       </lightning-card>

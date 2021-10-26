@@ -6,9 +6,11 @@ export default class Lookups extends LightningElement {
     @api
     sObjectName;
 
-    limit = '1';
+    limit = '3';
 
     order = 'ASC';
+
+    addInfo = 'Phone';
 
     @track
     boxClass = 'slds-combobox slds-m-left_small slds-m-right_small slds-dropdown-trigger slds-dropdown-trigger_click';
@@ -16,12 +18,11 @@ export default class Lookups extends LightningElement {
     @track
     blurTimeout;
 
-    @wire(getObjectList, {sObjectName : '$sObjectName', limits : '$limit', orderOfSearch : '$order'})
+    @wire(getObjectList, {sObjectName : '$sObjectName', limits : '$limit', orderOfSearch : '$order', addInfo : '$addInfo'})
     objects;
 
     get options() {
         return [
-            { label: '1', value: '1'},
             { label: '3', value: '3'},
             { label: '5', value: '5'},
             { label: '10', value: '10'},
@@ -36,12 +37,24 @@ export default class Lookups extends LightningElement {
         ]
     }
 
+    get optionsAddInfo() {
+        return [
+            { label: 'Phone', value: 'Phone'},
+            { label: 'Industry', value: 'Industry'},
+            { label: 'City', value: 'BillingCity'}
+        ]
+    }
+
     handleChange(event) {
         this.limit = event.detail.value;
     }
 
     handleChangeOrder(event) {
         this.order = event.detail.value;
+    }
+
+    handleAddInfo(event) {
+        this.addInfo = event.detail.value;
     }
 
     handleClick() {
