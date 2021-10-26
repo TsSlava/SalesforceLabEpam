@@ -6,7 +6,7 @@ export default class Lookups extends LightningElement {
     @api
     sObjectName;
 
-    limit = '3';
+    limit = '5';
 
     order = 'ASC';
 
