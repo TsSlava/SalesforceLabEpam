@@ -1,0 +1,78 @@
+<template>
+    <lightning-card>
+    <div class="slds-form-element">
+      <label class="slds-form-element__label" for="combobox-id-1" id="combobox-label-id-33" style="text-indent: 10px">Relate To</label>
+      <div class="slds-form-element__control">
+        <div class="slds-combobox_container">
+          <div class={boxClass} aria-expanded="true" aria-haspopup="listbox" role="combobox" >
+            <div class="slds-combobox__form-element slds-input-has-icon slds-input-has-icon_right" role="none">
+              <div class="defaultClass">
+                <input type="text" class="slds-input slds-combobox__input" id="combobx-id-1" onclick={handleClick} onblur={onBlur} aria-autocomplete="list" aria-controls="listbox-id-1" aria-expanded="false" aria-haspopup="listbox" autocomplete="off" role="combobox" placeholder="Search...">
+                <span class="slds-icon_container">
+                  <lightning-icon icon-name="utility:search" class="slds-icon-utility-search slds-input__icon slds-input__icon_right slds-searchIcon" alternative-text="Approved" size="x-small"></lightning-icon>
+                </span>
+              </div>
+              <div id="listbox-id-1" class="slds-dropdown slds-dropdown_length-with-icon-7 slds-dropdown_fluid" role="listbox">
+                <ul class="slds-listbox slds-listbox_vertical" role="presentation">
+                  <template if:true={objects.data}>
+                    <template for:each={objects.data} for:item="object">
+                      <li role="presentation" class="slds-listbox__item" key={object.Id}>
+                        <div aria-selected="true" id={object.Id} class="slds-media slds-listbox__option slds-listbox__option_entity slds-listbox__option_has-meta" role="option" tabindex="0">
+                          <span class="slds-media__body">
+                            <span class="slds-listbox__option-text slds-text-heading_small slds-listbox__option-text_entity slds_optiontxt">{object.Name}</span>
+                            <template if:true={object.Phone}>
+                              <span class="slds-listbox__option-text slds-listbox__option-text_entity slds_optiontxt">{object.Phone}</span>
+                            </template>
+                            <template if:true={object.Industry}>
+                              <span class="slds-listbox__option-text slds-listbox__option-text_entity slds_optiontxt">Industry: {object.Industry}</span>
+                            </template>
+                            <template if:true={object.BillingCity}>
+                              <span class="slds-listbox__option-text slds-listbox__option-text_entity slds_optiontxt">City: {object.BillingCity}</span>
+                            </template>
+                          </span>
+                        </div>
+                      </li>
+                    </template>
+                  </template>
+                  <template if:false={objects.data}>
+                    <div>Error</div>
+                  </template>
+                </ul>
+              </div>
+            </div>
+          </div>
+          <lightning-card title="Filters:" class="slds-m-left_small slds-p-top_x-small">
+            <lightning-combobox
+                    name="limit"
+                    label="Limits:"
+                    value={limit}
+                    placeholder="Select Limit"
+                    options={options}
+                    onchange={handleChange}
+                    class="slds-m-left_medium slds-size_1-of-4">
+              </lightning-combobox>
+            <lightning-combobox
+                    name="order"
+                    label="Order of Search:"
+                    value={order}
+                    placeholder="Select order of search"
+                    options={optionsOfOrder}
+                    onchange={handleChangeOrder}
+                    class="slds-m-left_medium slds-p-top_small slds-size_1-of-2">
+                  </lightning-combobox>
+            <lightning-combobox
+                    name="additionalInformation"
+                    label="Additional Info:"
+                    value={addInfo}
+                    placeholder="No additional information"
+                    options={optionsAddInfo}
+                    onchange={handleAddInfo}
+                    class="slds-m-left_medium slds-p-top_small slds-size_1-of-2">
+                  </lightning-combobox>
+        </lightning-card>
+        </div>
+      </div>
+    </div>
+  </lightning-card>
+  </template>
+  

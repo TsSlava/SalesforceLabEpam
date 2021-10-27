@@ -1,6 +1,4 @@
-public with sharing class SearchObject {
-
-    //lookUpController
+public with sharing class LookUpController {
 
     @AuraEnabled(Cacheable = true)
     public static List<SObject> getRecordList(String sObjectName, String addInfo){

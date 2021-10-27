@@ -1,5 +1,5 @@
 import { LightningElement, wire, api, track } from 'lwc';
-import getRecordList from '@salesforce/apex/LookUpController.getRecordList';
+import getObjectList from '@salesforce/apex/SearchObject.getObjectList';
 
 export default class Lookups extends LightningElement {
 
@@ -17,11 +17,19 @@ export default class Lookups extends LightningElement {
     @track
     boxClass = 'slds-combobox slds-m-left_small slds-m-right_small slds-dropdown-trigger slds-dropdown-trigger_click';
 
-    @wire(getRecordList, {sObjectName : '$sObjectApiName', addInfo : '$addInfoFieldApiName'})
+    @wire(getObjectList, {sObjectApiName : '$sObjectName', addInfoFieldApiName : '$addInfo'})
     records;
 
+    handleChange(event) {
+        this.limit = event.detail.value;
+    }
+
+    handleOrderChange(event) {
+        this.order = event.detail.value;
+    }
+
     handleChangeAddInfo(event) {
-        this.addInfoFieldApiName = event.detail.value;
+        this.addInfo = event.detail.value;
     }
 
     handleClick() {
