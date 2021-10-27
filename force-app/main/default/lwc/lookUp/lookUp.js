@@ -6,13 +6,14 @@ export default class Lookups extends LightningElement {
     @api
     sObjectApiName;
 
-    addInfoFieldApiName = 'Phone';
+    @api
+    addInfoFieldApiName;
 
-    optionsAddInfo = [
-        { label: 'Phone', value: 'Phone' },
-        { label: 'Industry', value: 'Industry' },
-        { label: 'City', value: 'BillingCity' }
-    ]
+    // optionsAddInfo = [
+    //     { label: 'Phone', value: 'Phone' },
+    //     { label: 'Industry', value: 'Industry' },
+    //     { label: 'City', value: 'BillingCity' }
+    // ]
 
     @track
     boxClass = 'slds-combobox slds-m-left_small slds-m-right_small slds-dropdown-trigger slds-dropdown-trigger_click';
