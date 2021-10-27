@@ -8,10 +8,16 @@ export default class Lookups extends LightningElement {
 
     addInfoFieldApiName = 'Phone';
 
+    searchKey = '';
+
     @track
     boxClass = 'slds-combobox slds-m-left_small slds-m-right_small slds-dropdown-trigger slds-dropdown-trigger_click';
 
-    @wire(getRecordList, {sObjectName : '$sObjectApiName', addInfo : '$addInfoFieldApiName'})
+    @wire(getRecordList, {
+        sObjectName : '$sObjectApiName', 
+        addInfo : '$addInfoFieldApiName',
+        searchKey : '$searchKey'
+    })
     records;
 
     handleChangeAddInfo(event) {
@@ -29,6 +35,14 @@ export default class Lookups extends LightningElement {
     handleSelect(event) {
         const eventData = event.detail;
         this.addInfoFieldApiName = eventData;
+    }
+
+    handleChange(event) {
+        window.clearTimeout(this.delayTimeout);
+        const searchKey = event.target.value;
+        this.delayTimeout = setTimeout(() => {
+            this.searchKey = searchKey;
+        }, 300);
     }
     
 }
