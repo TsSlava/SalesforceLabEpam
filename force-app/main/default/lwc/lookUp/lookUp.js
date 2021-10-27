@@ -6,14 +6,7 @@ export default class Lookups extends LightningElement {
     @api
     sObjectApiName;
 
-    @api
-    addInfoFieldApiName;
-
-    // optionsAddInfo = [
-    //     { label: 'Phone', value: 'Phone' },
-    //     { label: 'Industry', value: 'Industry' },
-    //     { label: 'City', value: 'BillingCity' }
-    // ]
+    addInfoFieldApiName = 'Phone';
 
     @track
     boxClass = 'slds-combobox slds-m-left_small slds-m-right_small slds-dropdown-trigger slds-dropdown-trigger_click';
@@ -31,6 +24,11 @@ export default class Lookups extends LightningElement {
 
     handleBlur() {
         this.boxClass = 'slds-combobox slds-m-left_small slds-m-right_small slds-dropdown-trigger slds-dropdown-trigger_click slds-has-focus';
+    }
+
+    handleSelect(event) {
+        const eventData = event.detail;
+        this.addInfoFieldApiName = eventData;
     }
     
 }

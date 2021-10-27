@@ -66,18 +66,9 @@
               </div>
             </div>
           </div>
-          <c-filter></c-filter>
-          <!-- <lightning-card title="Filter:" class="slds-m-left_small slds-p-top_x-small">
-            <lightning-combobox
-                    name="additionalInformation"
-                    label="Additional Info:"
-                    value={addInfoFieldApiName}
-                    placeholder="No additional information"
-                    options={optionsAddInfo}
-                    onchange={handleChangeAddInfo}
-                    class="slds-m-left_medium slds-p-top_small slds-size_1-of-2">
-                  </lightning-combobox>
-        </lightning-card> -->
+          <c-filter 
+                onselect={handleSelect}
+          ></c-filter>
         </div>
       </div>
     </div>

@@ -2,8 +2,7 @@ import { LightningElement, api } from 'lwc';
 
 export default class Filter extends LightningElement {
 
-    @api
-    addInfoFieldApiName = 'Phone';
+    addInfoFieldApiName;
 
     optionsAddInfo = [
         { label: 'Phone', value: 'Phone' },
@@ -13,6 +12,11 @@ export default class Filter extends LightningElement {
 
     handleChangeAddInfo(event) {
         this.addInfoFieldApiName = event.detail.value;
+        event.preventDefault();
+        const selectEvent = new CustomEvent('select', {
+            detail: this.addInfoFieldApiName
+        }); 
+        this.dispatchEvent(selectEvent);
     }
 
 }
