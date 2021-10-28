@@ -1,10 +1,17 @@
 import { LightningElement, wire, api, track } from 'lwc';
+import { subscribe, MessageContext } from 'lightning/messageService';
+import RECORD_SELECTED_CHANNEL from '@salesforce/messageChannel/Record_Selected__c';
 import getRecordList from '@salesforce/apex/LookUpController.getRecordList';
 
 export default class Lookups extends LightningElement {
 
+    subscription = null;
+
     @api
     sObjectApiName = 'Account';
+
+    @wire(MessageContext)
+    messageContext;
 
     addInfoFieldApiName = 'Phone';
 
@@ -55,14 +62,30 @@ export default class Lookups extends LightningElement {
         //     }
         // }
 
-    handleSelect(event) {
-        const eventData = event.detail;
-        this.addInfoFieldApiName = eventData;
+    // handleSelect(event) {
+    //     const eventData = event.detail;
+    //     this.addInfoFieldApiName = eventData;
+    // }
+
+    // handleChooseObject(event) {
+    //     const eventData = event.detail;
+    //     this.sObjectApiName = eventData;
+    // }
+
+    subscribeToMessageChannel() {
+        this.subscription = subscribe(
+            this.messageContext,
+            RECORD_SELECTED_CHANNEL,
+            (message) => this.handleMessage(message)
+        );
     }
 
-    handleChooseObject(event) {
-        const eventData = event.detail;
-        this.sObjectApiName = eventData;
+    handleMessage(message) {
+        this.addInfoFieldApiName = message.addInfo;
+    }
+
+    connectedCallback() {
+        this.subscribeToMessageChannel();
     }
 
     handleChange(event) {

@@ -1,5 +1,6 @@
 <template>
-    <lightning-combobox
+    <lightning-card title="Customise Displayed sObject:" class="slds-m-left_small slds-p-top_x-small">
+        <lightning-combobox
                 name="chooseObject"
                 label="Choose sObject:"
                 value={value}
@@ -7,5 +8,6 @@
                 options={optionsOfObjects}
                 onchange={handleChangeObjects}
                 class="slds-m-left_medium slds-p-top_small slds-size_1-of-2">
-    </lightning-combobox>
+        </lightning-combobox>
+    </lightning-card>
 </template>
