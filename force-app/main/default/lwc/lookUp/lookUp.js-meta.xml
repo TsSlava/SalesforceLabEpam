@@ -6,7 +6,7 @@
     <targets>
         <target>lightning__HomePage</target>
     </targets>
-    <targetConfigs>
+    <!-- <targetConfigs>
         <targetConfig targets="lightning__HomePage">
             <property 
                 label="Type of sObject for search"
@@ -15,5 +15,5 @@
                 default="Contact"
                 description="Enter type of sObject or leave field with no changes" />
         </targetConfig>
-    </targetConfigs>
+    </targetConfigs> -->
 </LightningComponentBundle>

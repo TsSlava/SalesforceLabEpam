@@ -5,7 +5,7 @@
             class="slds-form-element__label" 
             for="combobox-id-1" 
             id="combobox-label-id-33" 
-            style="text-indent: 10px"
+            style="text-indent: 10px" 
             >Relate To</label>
       <div class="slds-form-element__control">
         <div class="slds-combobox_container">
@@ -17,7 +17,7 @@
                       class="slds-input slds-combobox__input" 
                       id="combobx-id-1" 
                       onclick={handleClick}
-                      onchange={handleChange}
+                      oninput={handleChange}
                       onblur={handleBlur} 
                       aria-autocomplete="list" 
                       aria-controls="listbox-id-1" 
@@ -70,6 +70,9 @@
           <c-filter 
                 onselect={handleSelect}
           ></c-filter>
+          <c-filter-change-object
+                onselect ={handleChooseObject}
+          ></c-filter-change-object>
         </div>
       </div>
     </div>
