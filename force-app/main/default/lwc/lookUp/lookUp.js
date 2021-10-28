@@ -15,13 +15,9 @@ export default class Lookups extends LightningElement {
 
     addInfoFieldApiName = 'Phone';
 
-    // @track
-    // flag = false;
-
     @track
     searchKey = '';
 
-    @track
     boxClass = 'slds-combobox slds-m-left_small slds-m-right_small slds-dropdown-trigger slds-dropdown-trigger_click';
 
     @wire(getRecordList, {
@@ -36,31 +32,17 @@ export default class Lookups extends LightningElement {
     }
 
     handleClick() {
-        this.boxClass = 'slds-combobox slds-m-left_small slds-m-right_small slds-dropdown-trigger slds-dropdown-trigger_click slds-has-focus slds-is-open';
-        // this.flag = true;
-        // console.log(this.flag);
-        // this.test;
+        this.changeBoxClass = true;
     }
 
     handleBlur() {
-        this.boxClass = 'slds-combobox slds-m-left_small slds-m-right_small slds-dropdown-trigger slds-dropdown-trigger_click';
-        // this.flag = false;
-        // console.log(this.flag);
-        // this.test;
+        this.changeBoxClass = false;
     }
 
-        // get test() {
-        //     return this._boxClass;
-        // }
-
-        // set test(flag) {
-        //     if (flag === false) {
-        //         console.log('work');
-        //         this.boxClass = 'slds-combobox slds-m-left_small slds-m-right_small slds-dropdown-trigger slds-dropdown-trigger_click';
-        //     } else {
-        //         this.boxClass = 'slds-combobox slds-m-left_small slds-m-right_small slds-dropdown-trigger slds-dropdown-trigger_click slds-has-focus slds-is-open';
-        //     }
-        // }
+    set changeBoxClass(flag) {
+        this.boxClass = 'slds-combobox slds-m-left_small slds-m-right_small slds-dropdown-trigger slds-dropdown-trigger_click' +
+            (flag ? ' slds-is-open' : '');
+    }
 
     // handleSelect(event) {
     //     const eventData = event.detail;
