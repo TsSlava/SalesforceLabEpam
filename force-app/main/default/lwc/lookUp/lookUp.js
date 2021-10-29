@@ -18,6 +18,9 @@ export default class Lookups extends LightningElement {
     @track
     searchKey = '';
 
+    @track
+    selectedRecord;
+
     boxClass = 'slds-combobox slds-m-left_small slds-m-right_small slds-dropdown-trigger slds-dropdown-trigger_click';
 
     @wire(getRecordList, {
@@ -80,5 +83,20 @@ export default class Lookups extends LightningElement {
         this.delayTimeout = setTimeout(() => {
             this.searchKey = searchKey;
         }, 300);
-    } 
+    }
+
+    handleSelect(event) {
+        // console.log(event.target.tagName);
+        const elem = event.target.closest('.record');
+        this.selectedRecord = this.records.data.find( record => record.Id === elem.dataset.id);
+        // console.log(JSON.parse(JSON.stringify(this.records.data)));
+        // console.log(elem.dataset.id);
+        // console.log(this.selectedRecord);
+        // console.log(elem.classList);
+    }
+
+    handleRemove(event) {
+        event.preventDefault();
+        this.selectedRecord = undefined;
+    }
 }
