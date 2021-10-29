@@ -27,9 +27,9 @@ export default class Lookups extends LightningElement {
     })
     records;
 
-    handleChangeAddInfo(event) {
-        this.addInfoFieldApiName = event.detail.value;
-    }
+    // handleChangeAddInfo(event) {
+    //     this.addInfoFieldApiName = event.detail.value;
+    // }
 
     handleClick() {
         this.changeBoxClass = true;
@@ -63,7 +63,11 @@ export default class Lookups extends LightningElement {
     }
 
     handleMessage(message) {
-        this.addInfoFieldApiName = message.addInfo;
+        if(message.addInfo) {
+            this.addInfoFieldApiName = message.addInfo;
+        } else {
+            this.sObjectApiName = message.chosenObject;
+        }
     }
 
     connectedCallback() {

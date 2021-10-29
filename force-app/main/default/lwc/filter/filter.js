@@ -25,7 +25,7 @@ export default class Filter extends LightningElement {
     // }
 
     handleChangeAddInfo(event) {
-        const payload = { addInfo: event.target.value};
+        const payload = { addInfo: event.target.value };
 
         publish(this.messageContext, RECORD_SELECTED_CHANNEL, payload);
     }
