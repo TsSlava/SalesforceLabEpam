@@ -13,7 +13,7 @@ export default class Lookups extends LightningElement {
     @wire(MessageContext)
     messageContext;
 
-    addInfoFieldApiName = 'Phone';
+    addInfoFieldApiName = '';
 
     @track
     searchKey = '';
