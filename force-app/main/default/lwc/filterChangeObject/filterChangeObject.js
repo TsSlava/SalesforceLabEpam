@@ -2,7 +2,6 @@ import { LightningElement, wire } from 'lwc';
 import { publish, MessageContext } from 'lightning/messageService';
 import RECORD_SELECTED_CHANNEL from '@salesforce/messageChannel/Record_Selected__c';
 
-
 export default class FilterChangeObject extends LightningElement {
 
     value;
@@ -27,7 +26,11 @@ export default class FilterChangeObject extends LightningElement {
 
     handleChangeObjects(event) {
         const payload = { chosenObject: event.target.value };
+        // console.log(event.target.value, 'changeObject');
+        const payload2 = { chosenObjectToFilter: event.target.value};
 
         publish(this.messageContext, RECORD_SELECTED_CHANNEL, payload);
+        publish(this.messageContext, RECORD_SELECTED_CHANNEL, payload2);
+
     }
 }

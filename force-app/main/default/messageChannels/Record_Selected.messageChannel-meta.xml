@@ -11,4 +11,8 @@
         <fieldName>chosenObject</fieldName>
         <description>This is the propertry that changed</description>
     </lightningMessageFields>
+    <lightningMessageFields>
+        <fieldName>chosenObjectToFilter</fieldName>
+        <description>This is the propertry that changed</description>
+    </lightningMessageFields>
 </LightningMessageChannel>

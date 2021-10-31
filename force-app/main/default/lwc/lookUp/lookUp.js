@@ -68,8 +68,10 @@ export default class Lookups extends LightningElement {
     handleMessage(message) {
         if(message.addInfo) {
             this.addInfoFieldApiName = message.addInfo;
-        } else {
+        } else if(message.chosenObject) {
             this.sObjectApiName = message.chosenObject;
+            // this.template.querySelector('input[data-id="lookup-input"]').value = '';
+            this.selectedRecord = null;
         }
     }
 
