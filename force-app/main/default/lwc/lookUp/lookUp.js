@@ -73,6 +73,7 @@ export default class Lookups extends LightningElement {
             // this.template.querySelector('input[data-id="lookup-input"]').value = '';
             this.selectedRecord = null;
             this.addInfoFieldApiName = null;
+            this.searchKey = '';
         }
     }
 
