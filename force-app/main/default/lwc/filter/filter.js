@@ -76,7 +76,7 @@ export default class Filter extends LightningElement {
             } else if (this.sObjectApiName == 'Contact') {
                 this.optionsAddInfo = this.optionsAddInfoContact;
             } else if (this.sObjectApiName == 'Opportunity') {
-                this.optionsAddInfo = this.optionsAddInfoOpportunity
+                this.optionsAddInfo = this.optionsAddInfoOpportunity;
             }
         }
     }
