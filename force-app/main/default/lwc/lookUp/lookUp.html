@@ -1,4 +1,5 @@
 <template>
+  <div if:true={isShowInputMenu} class="backdrop" onclick={hideValuesBlock}></div>
   <lightning-card>
     <div class="slds-form-element">
       <label 
@@ -17,7 +18,7 @@
                     type="text" 
                     class="slds-input slds-combobox__input" 
                     id="combobx-id-1" 
-                    onclick={handleClick}
+                    onclick={showValuesBlock}
                     oninput={handleChange}
                     aria-autocomplete="list" 
                     aria-controls="listbox-id-1" 
@@ -33,7 +34,7 @@
                                     alternative-text="Approved" size="x-small"></lightning-icon>
                   </span>
                 </div>
-                <div id="listbox-id-1" class="slds-dropdown slds-dropdown_length-with-icon-7 slds-dropdown_fluid" role="listbox">
+                <div if:true={isShowInputMenu} id="listbox-id-1" class="slds-dropdown slds-dropdown_length-with-icon-7 slds-dropdown_fluid" role="listbox">
                   <ul class="slds-listbox slds-listbox_vertical" role="presentation">
                     <template if:true={records.data}>
                       <template for:each={records.data} for:item="record">
@@ -46,7 +47,14 @@
                               tabindex="0"
                               onclick={handleSelect}>
                             <span class="slds-media__body">
-                              <span class="slds-listbox__option-text slds-text-heading_small slds-listbox__option-text_entity slds_optiontxt">{record.Name}</span>
+                              <lightning-record-view-form
+                                record-id={record.Id}
+                                object-api-name={sObjectApiName}
+                              >
+                                <lightning-output-field field-name="Name" variant="label-hidden"> </lightning-output-field>
+                                <lightning-output-field field-name={addInfoFieldApiName} variant="label-hidden"> </lightning-output-field>
+                              </lightning-record-view-form>
+                              <!-- <span class="slds-listbox__option-text slds-text-heading_small slds-listbox__option-text_entity slds_optiontxt">{record.Name}</span>
                               <template if:true={record.Phone}>
                                 <span class="slds-listbox__option-text slds-listbox__option-text_entity slds_optiontxt">{record.Phone}</span>
                               </template>
@@ -70,7 +78,7 @@
                               </template>
                               <template if:true={record.StageName}>
                                 <span class="slds-listbox__option-text slds-listbox__option-text_entity slds_optiontxt">Stage: {record.StageName}</span>
-                              </template>
+                              </template> -->
                             </span>
                           </div>
                         </li>
@@ -99,7 +107,6 @@
             type="text" 
             class="slds-input slds-combobox__input " 
             id="combobx-id-2" 
-            onblur={handleBlur} 
             aria-controls="listbox-id-1" 
             autocomplete="off" 
             role="textbox"

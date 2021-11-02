@@ -13,6 +13,7 @@ export default class Lookups extends LightningElement {
     @wire(MessageContext)
     messageContext;
 
+    @track
     addInfoFieldApiName = '';
 
     @track
@@ -34,13 +35,13 @@ export default class Lookups extends LightningElement {
     //     this.addInfoFieldApiName = event.detail.value;
     // }
 
-    handleClick() {
-        this.changeBoxClass = true;
-    }
+    // handleClick() {
+    //     this.changeBoxClass = true;
+    // }
 
-    handleBlur() {
-        this.changeBoxClass = false;
-    }
+    // handleBlur() {
+    //     this.changeBoxClass = false;
+    // }
 
     set changeBoxClass(flag) {
         this.boxClass = 'slds-combobox slds-m-left_small slds-m-right_small slds-dropdown-trigger slds-dropdown-trigger_click' +
@@ -71,7 +72,7 @@ export default class Lookups extends LightningElement {
         } else if(message.chosenObject) {
             this.sObjectApiName = message.chosenObject;
             // this.template.querySelector('input[data-id="lookup-input"]').value = '';
-            this.selectedRecord = null;
+            // this.selectedRecord = null;
             this.addInfoFieldApiName = null;
             this.searchKey = '';
         }
@@ -93,6 +94,7 @@ export default class Lookups extends LightningElement {
         // console.log(event.target.tagName);
         const elem = event.target.closest('.record');
         this.selectedRecord = this.records.data.find( record => record.Id === elem.dataset.id);
+        this.hideValuesBlock();
         // console.log(JSON.parse(JSON.stringify(this.records.data)));
         // console.log(elem.dataset.id);
         // console.log(this.selectedRecord);
@@ -103,4 +105,14 @@ export default class Lookups extends LightningElement {
         event.preventDefault();
         this.selectedRecord = undefined;
     }
+
+    showValuesBlock() {
+		this.isShowInputMenu = true;
+        this.changeBoxClass = true;
+	}
+
+	hideValuesBlock() {
+		this.isShowInputMenu = false;
+        this.changeBoxClass = false;
+	}
 }
