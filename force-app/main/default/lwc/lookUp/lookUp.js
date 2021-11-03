@@ -22,6 +22,11 @@ export default class Lookups extends LightningElement {
     @track
     selectedRecord;
 
+    @track
+    records;
+
+    @track error;
+
     boxClass = 'slds-combobox slds-m-left_small slds-m-right_small slds-dropdown-trigger slds-dropdown-trigger_click';
 
     @wire(getRecordList, {
@@ -29,7 +34,22 @@ export default class Lookups extends LightningElement {
         addInfo : '$addInfoFieldApiName',
         searchKey : '$searchKey'
     })
-    records;
+    getRecords({
+        data, error
+    }) {
+        if(data) {
+            this.records = [];
+            for(let i = 0; i < data.length; i++) {
+                this.records[i] = {
+                    Id : data[i].Id,
+                    Name : data[i].Name,
+                    AddInfoData : data[i][this.addInfoFieldApiName]
+                }
+            }
+        } else if (error) {
+            this.error = error;
+        }
+    }
 
     // handleChangeAddInfo(event) {
     //     this.addInfoFieldApiName = event.detail.value;
@@ -103,7 +123,7 @@ export default class Lookups extends LightningElement {
 
     handleRemove(event) {
         event.preventDefault();
-        this.selectedRecord = undefined;
+        this.selectedRecord = null;
     }
 
     showValuesBlock() {
@@ -115,4 +135,5 @@ export default class Lookups extends LightningElement {
 		this.isShowInputMenu = false;
         this.changeBoxClass = false;
 	}
+
 }

@@ -36,8 +36,8 @@
                 </div>
                 <div if:true={isShowInputMenu} id="listbox-id-1" class="slds-dropdown slds-dropdown_length-with-icon-7 slds-dropdown_fluid" role="listbox">
                   <ul class="slds-listbox slds-listbox_vertical" role="presentation">
-                    <template if:true={records.data}>
-                      <template for:each={records.data} for:item="record">
+                    <template if:true={records}>
+                      <template for:each={records} for:item="record">
                         <li role="presentation" class="slds-listbox__item" key={record.Id}>
                           <div
                               aria-selected="true" 
@@ -47,14 +47,18 @@
                               tabindex="0"
                               onclick={handleSelect}>
                             <span class="slds-media__body">
-                              <lightning-record-view-form
+                              <!-- <lightning-record-view-form
                                 record-id={record.Id}
                                 object-api-name={sObjectApiName}
                               >
                                 <lightning-output-field field-name="Name" variant="label-hidden"> </lightning-output-field>
                                 <lightning-output-field field-name={addInfoFieldApiName} variant="label-hidden"> </lightning-output-field>
-                              </lightning-record-view-form>
-                              <!-- <span class="slds-listbox__option-text slds-text-heading_small slds-listbox__option-text_entity slds_optiontxt">{record.Name}</span>
+                              </lightning-record-view-form> -->
+                              <span class="slds-listbox__option-text slds-text-heading_small slds-listbox__option-text_entity slds_optiontxt">{record.Name}</span>
+                              <template if:true={record.AddInfoData}>
+                                <span class="slds-listbox__option-text slds-text-heading_small slds-listbox__option-text_entity slds_optiontxt">{addInfoFieldApiName}: {record.AddInfoData}</span>
+                              </template>
+                              <!-- <span class="slds-listbox__option-text slds-text-heading_small slds-listbox__option-text_entity slds_optiontxt">{record.AddInfoData}</span>
                               <template if:true={record.Phone}>
                                 <span class="slds-listbox__option-text slds-listbox__option-text_entity slds_optiontxt">{record.Phone}</span>
                               </template>
@@ -84,7 +88,7 @@
                         </li>
                       </template>
                     </template>
-                    <template if:false={records.data}>
+                    <template if:false={records}>
                       <div>Choose additional information...</div>
                     </template>
                   </ul>
