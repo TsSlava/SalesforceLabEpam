@@ -55,11 +55,11 @@
                                 <lightning-output-field field-name={addInfoFieldApiName} variant="label-hidden"> </lightning-output-field>
                               </lightning-record-view-form> -->
                               <span class="slds-listbox__option-text slds-text-heading_small slds-listbox__option-text_entity slds_optiontxt">{record.Name}</span>
-                              <template if:true={record.AddInfoData}>
-                                <span class="slds-listbox__option-text slds-text-heading_small slds-listbox__option-text_entity slds_optiontxt">{addInfoFieldApiName}: {record.AddInfoData}</span>
-                              </template>
-                              <!-- <span class="slds-listbox__option-text slds-text-heading_small slds-listbox__option-text_entity slds_optiontxt">{record.AddInfoData}</span>
-                              <template if:true={record.Phone}>
+                                <template if:true={record.AddInfoData}>
+                                  <span class="slds-listbox__option-text slds-text-heading_small slds-listbox__option-text_entity slds_optiontxt">{addInfoFieldApiName}: {record.AddInfoData}</span>
+                                </template>
+                              <!-- <span class="slds-listbox__option-text slds-text-heading_small slds-listbox__option-text_entity slds_optiontxt">{record.AddInfoData}</span> -->
+                              <!-- <template if:true={record.Phone}>
                                 <span class="slds-listbox__option-text slds-listbox__option-text_entity slds_optiontxt">{record.Phone}</span>
                               </template>
                               <template if:true={record.Industry}>
@@ -89,7 +89,7 @@
                       </template>
                     </template>
                     <template if:false={records}>
-                      <div>Choose additional information...</div>
+                      <div>Something went wrong</div>
                     </template>
                   </ul>
                 </div>

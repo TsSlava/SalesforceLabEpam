@@ -25,9 +25,12 @@ export default class Lookups extends LightningElement {
     @track
     records;
 
-    @track error;
+    @track 
+    error;
 
-    boxClass = 'slds-combobox slds-m-left_small slds-m-right_small slds-dropdown-trigger slds-dropdown-trigger_click';
+    @track flag = false;
+
+    // boxClass = 'slds-combobox slds-m-left_small slds-m-right_small slds-dropdown-trigger slds-dropdown-trigger_click';
 
     @wire(getRecordList, {
         sObjectName : '$sObjectApiName', 
@@ -63,10 +66,18 @@ export default class Lookups extends LightningElement {
     //     this.changeBoxClass = false;
     // }
 
-    set changeBoxClass(flag) {
-        this.boxClass = 'slds-combobox slds-m-left_small slds-m-right_small slds-dropdown-trigger slds-dropdown-trigger_click' +
-            (flag ? ' slds-is-open' : '');
+    get boxClass() {
+        if(this.flag == true){
+            return 'slds-combobox slds-m-left_small slds-m-right_small slds-dropdown-trigger slds-dropdown-trigger_click slds-is-open';
+        } else {
+            return 'slds-combobox slds-m-left_small slds-m-right_small slds-dropdown-trigger slds-dropdown-trigger_click';
+        }
     }
+
+    // set changeBoxClass(flag) {
+    //     this.boxClass = 'slds-combobox slds-m-left_small slds-m-right_small slds-dropdown-trigger slds-dropdown-trigger_click' +
+    //         (flag ? ' slds-is-open' : '');
+    // }
 
     // handleSelect(event) {
     //     const eventData = event.detail;
@@ -111,9 +122,9 @@ export default class Lookups extends LightningElement {
     }
 
     handleSelect(event) {
-        // console.log(event.target.tagName);
         const elem = event.target.closest('.record');
-        this.selectedRecord = this.records.data.find( record => record.Id === elem.dataset.id);
+        // this.selectedRecord = this.records.data.find( record => record.Id === elem.dataset.id);
+        this.selectedRecord = this.records.find( record => record.Id === elem.dataset.id);
         this.hideValuesBlock();
         // console.log(JSON.parse(JSON.stringify(this.records.data)));
         // console.log(elem.dataset.id);
@@ -128,12 +139,14 @@ export default class Lookups extends LightningElement {
 
     showValuesBlock() {
 		this.isShowInputMenu = true;
-        this.changeBoxClass = true;
+        // this.changeBoxClass = true;
+        this.flag = true;
 	}
 
 	hideValuesBlock() {
 		this.isShowInputMenu = false;
-        this.changeBoxClass = false;
+        // this.changeBoxClass = false;
+        this.flag = false;
 	}
 
 }
