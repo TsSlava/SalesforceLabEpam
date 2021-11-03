@@ -67,7 +67,7 @@ export default class Lookups extends LightningElement {
     // }
 
     get boxClass() {
-        if(this.flag == true){
+        if(this.flag){
             return 'slds-combobox slds-m-left_small slds-m-right_small slds-dropdown-trigger slds-dropdown-trigger_click slds-is-open';
         } else {
             return 'slds-combobox slds-m-left_small slds-m-right_small slds-dropdown-trigger slds-dropdown-trigger_click';
@@ -149,4 +149,12 @@ export default class Lookups extends LightningElement {
         this.flag = false;
 	}
 
+    get selectValue(){
+        if (this.selectedRecord) {
+            this.template.querySelector('input').disabled = true;
+            return this.selectedRecord.Name;
+        } else {
+            return null;
+        }
+    }
 }

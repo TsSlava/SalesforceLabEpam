@@ -8,7 +8,7 @@
         id="combobox-label-id-33" 
         >Relate To
       </label>
-      <template if:false={selectedRecord}>
+      <!-- <template if:false={selectedRecord}> -->
         <div class="slds-form-element__control">
           <div class="slds-combobox_container">
             <div class={boxClass} aria-expanded="true" aria-haspopup="listbox" role="combobox" >
@@ -25,6 +25,7 @@
                     aria-expanded="false" 
                     aria-haspopup="listbox" 
                     autocomplete="off" 
+                    value={selectValue}
                     role="combobox" 
                     placeholder="Search...">
                   <span class="slds-icon_container">
@@ -103,8 +104,8 @@
             ></c-filter-change-object> -->
           </div>
         </div>
-      </template>
-      <template if:true={selectedRecord}>
+      <!-- </template> -->
+      <!-- <template if:true={selectedRecord}>
         <div class="slds-combobox__form-element label slds-input-has-icon slds-m-right_large
                             slds-input-has-icon_left-right" role="none">
             <input 
@@ -128,7 +129,7 @@
                         <span class="slds-assistive-text">Remove selected option</span>
                     </button>
         </div>
-      </template>
+      </template> -->
     </div>
   </lightning-card>
 </template>
