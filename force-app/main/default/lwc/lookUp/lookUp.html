@@ -28,12 +28,21 @@
                     value={selectValue}
                     role="combobox" 
                     placeholder="Search...">
-                  <span class="slds-icon_container">
-                    <lightning-icon 
+                      <span if:false={selectedRecord} class="slds-icon_container">
+                        <lightning-icon 
                                     icon-name="utility:search" 
                                     class="slds-icon-utility-search slds-input__icon slds-input__icon_right slds-searchIcon" 
                                     alternative-text="Approved" size="x-small"></lightning-icon>
-                  </span>
+                      </span>
+                      <span if:true={selectedRecord} class="slds-button_icon">
+                        <button class="sicon_container slds-button slds-button_icon 
+                                   slds-input__icon slds-input__icon_right" 
+                                title="Remove selected option"
+                                onclick={handleRemove}>
+                        <lightning-icon icon-name="utility:close" size="small"></lightning-icon>
+                        <span class="slds-assistive-text">Remove selected record</span>
+                        </button>
+                      </span>
                 </div>
                 <div if:true={isShowInputMenu} id="listbox-id-1" class="slds-dropdown slds-dropdown_length-with-icon-7 slds-dropdown_fluid" role="listbox">
                   <ul class="slds-listbox slds-listbox_vertical" role="presentation">

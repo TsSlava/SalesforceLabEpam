@@ -135,6 +135,7 @@ export default class Lookups extends LightningElement {
     handleRemove(event) {
         event.preventDefault();
         this.selectedRecord = null;
+        this.searchKey = null;
     }
 
     showValuesBlock() {
@@ -151,10 +152,10 @@ export default class Lookups extends LightningElement {
 
     get selectValue(){
         if (this.selectedRecord) {
-            this.template.querySelector('input').disabled = true;
+            this.template.querySelector('input').disabled = false;
             return this.selectedRecord.Name;
         } else {
-            return null;
+            return this.searchKey;
         }
     }
 }
