@@ -8,7 +8,6 @@
         id="combobox-label-id-33" 
         >Relate To
       </label>
-      <!-- <template if:false={selectedRecord}> -->
         <div class="slds-form-element__control">
           <div class="slds-combobox_container">
             <div class={boxClass} aria-expanded="true" aria-haspopup="listbox" role="combobox" >
@@ -39,7 +38,7 @@
                                    slds-input__icon slds-input__icon_right" 
                                 title="Remove selected option"
                                 onclick={handleRemove}>
-                        <lightning-icon icon-name="utility:close" size="small"></lightning-icon>
+                        <lightning-icon icon-name="utility:close" size="x-small"></lightning-icon>
                         <span class="slds-assistive-text">Remove selected record</span>
                         </button>
                       </span>
@@ -56,6 +55,11 @@
                               role="option" 
                               tabindex="0"
                               onclick={handleSelect}>
+                              <lightning-icon 
+                                            icon-name="standard:record"
+                                            alternative-text="Record"
+                                            title="Record">
+                                </lightning-icon>            
                             <span class="slds-media__body">
                               <!-- <lightning-record-view-form
                                 record-id={record.Id}
@@ -64,9 +68,9 @@
                                 <lightning-output-field field-name="Name" variant="label-hidden"> </lightning-output-field>
                                 <lightning-output-field field-name={addInfoFieldApiName} variant="label-hidden"> </lightning-output-field>
                               </lightning-record-view-form> -->
-                              <span class="slds-listbox__option-text slds-text-heading_small slds-listbox__option-text_entity slds_optiontxt">{record.Name}</span>
+                              <span class="slds-listbox__option-text slds-m-left_xxx-small slds-text-body_small slds-listbox__option-text_entity">{record.Name}</span>
                                 <template if:true={record.AddInfoData}>
-                                  <span class="slds-listbox__option-text slds-text-heading_small slds-listbox__option-text_entity slds_optiontxt">{addInfoFieldApiName}: {record.AddInfoData}</span>
+                                  <span class="slds-listbox__option-meta slds-m-left_xxx-small slds-listbox__option-meta_entity">{addInfoFieldApiName}: {record.AddInfoData}</span>
                                 </template>
                               <!-- <span class="slds-listbox__option-text slds-text-heading_small slds-listbox__option-text_entity slds_optiontxt">{record.AddInfoData}</span> -->
                               <!-- <template if:true={record.Phone}>
@@ -113,7 +117,6 @@
             ></c-filter-change-object> -->
           </div>
         </div>
-      <!-- </template> -->
       <!-- <template if:true={selectedRecord}>
         <div class="slds-combobox__form-element label slds-input-has-icon slds-m-right_large
                             slds-input-has-icon_left-right" role="none">
