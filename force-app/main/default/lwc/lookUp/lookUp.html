@@ -68,7 +68,7 @@
                                 <lightning-output-field field-name="Name" variant="label-hidden"> </lightning-output-field>
                                 <lightning-output-field field-name={addInfoFieldApiName} variant="label-hidden"> </lightning-output-field>
                               </lightning-record-view-form> -->
-                              <span class="slds-listbox__option-text slds-m-left_xxx-small slds-text-body_small slds-listbox__option-text_entity">{record.Name}</span>
+                              <span class={marginClass}>{record.Name}</span>
                                 <template if:true={record.AddInfoData}>
                                   <span class="slds-listbox__option-meta slds-m-left_xxx-small slds-listbox__option-meta_entity">{addInfoFieldApiName}: {record.AddInfoData}</span>
                                 </template>

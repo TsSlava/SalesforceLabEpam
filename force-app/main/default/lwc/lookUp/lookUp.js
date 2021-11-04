@@ -74,6 +74,15 @@ export default class Lookups extends LightningElement {
         }
     }
 
+    get selectValue() {
+        if (this.selectedRecord) {
+            // this.template.querySelector('input').disabled = false;
+            return this.selectedRecord.Name;
+        } else {
+            return this.searchKey;
+        }
+    }
+
     // set changeBoxClass(flag) {
     //     this.boxClass = 'slds-combobox slds-m-left_small slds-m-right_small slds-dropdown-trigger slds-dropdown-trigger_click' +
     //         (flag ? ' slds-is-open' : '');
@@ -106,6 +115,14 @@ export default class Lookups extends LightningElement {
             // this.selectedRecord = null;
             this.addInfoFieldApiName = null;
             this.searchKey = '';
+        }
+    }
+
+    get marginClass() {
+        if(this.addInfoFieldApiName) {
+            return "slds-listbox__option-text slds-m-left_xxx-small slds-listbox__option-text_entity";
+        } else {
+            return "slds-listbox__option-text slds-m-left_xxx-small slds-m-top_x-small slds-listbox__option-text_entity";
         }
     }
 
@@ -149,13 +166,4 @@ export default class Lookups extends LightningElement {
         // this.changeBoxClass = false;
         this.flag = false;
 	}
-
-    get selectValue(){
-        if (this.selectedRecord) {
-            // this.template.querySelector('input').disabled = false;
-            return this.selectedRecord.Name;
-        } else {
-            return this.searchKey;
-        }
-    }
 }
