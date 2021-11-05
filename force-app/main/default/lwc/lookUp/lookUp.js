@@ -109,6 +109,9 @@ export default class Lookups extends LightningElement {
     handleMessage(message) {
         if(message.addInfo) {
             this.addInfoFieldApiName = message.addInfo;
+            if(message.addInfo == 'null') {
+                this.addInfoFieldApiName = null;
+            }
         } else if(message.chosenObject) {
             this.sObjectApiName = message.chosenObject;
             // this.template.querySelector('input[data-id="lookup-input"]').value = '';
@@ -118,11 +121,19 @@ export default class Lookups extends LightningElement {
         }
     }
 
-    get marginClass() {
+    get changeMarginOfRecord() {
         if(this.addInfoFieldApiName) {
             return "slds-listbox__option-text slds-m-left_xxx-small slds-listbox__option-text_entity";
         } else {
             return "slds-listbox__option-text slds-m-left_xxx-small slds-m-top_x-small slds-listbox__option-text_entity";
+        }
+    }
+
+    get changeIconLocate() {
+        if(this.selectedRecord) {
+            return "slds-combobox__form-element slds-input-has-icon slds-input-has-icon_left-right";
+        } else {
+            return "slds-combobox__form-element slds-input-has-icon slds-input-has-icon_right"
         }
     }
 

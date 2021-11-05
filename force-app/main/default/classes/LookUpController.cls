@@ -4,7 +4,7 @@ public with sharing class LookUpController {
     public static List<SObject> getRecordList(String addInfo, String sObjectName, String searchKey){
         String key = '%' + searchKey + '%';
         List<String> fieldsList = new List<String>{'Id', 'Name'};
-        if (String.isNotBlank(addInfo) && !addInfo.equalsIgnoreCase('null')) {
+        if (String.isNotBlank(addInfo)) {
             fieldsList.add(addInfo);
         }
         String fields = String.join(fieldsList, ', ');
