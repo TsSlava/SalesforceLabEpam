@@ -13,5 +13,20 @@ public with sharing class LookUpController {
         String queryFormatted = String.format(template, parameters);
         return Database.query(queryFormatted);
     }
+
+    @AuraEnabled(Cacheable = true)
+    public static List<String> getAllObjectList(){
+        // return [SELECT SObjectType FROM ObjectPermissions GROUP BY SObjectType ORDER BY SObjectType ASC];
+        // List<String> objects = [SELECT SObjectType FROM ObjectPermissions GROUP BY SObjectType ORDER BY SObjectType ASC];
+        List<String> stdObjectNames = new List<String>();
+        for ( Schema.SObjectType typ : Schema.getGlobalDescribe().values() ) {
+	        String sobjName = String.valueOf(typ);
+		            stdObjectNames.add(sobjName);
+	                    
+                    
+                    System.debug('stdObjectNames: ' + stdObjectNames);
+                }
+                return stdObjectNames;
+            }
 }
  
