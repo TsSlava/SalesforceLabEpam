@@ -66,42 +66,11 @@
                                             title="Record">
                                 </lightning-icon>            
                             <span class="slds-media__body">
-                              <!-- <lightning-record-view-form
-                                record-id={record.Id}
-                                object-api-name={sObjectApiName}
-                              >
-                                <lightning-output-field field-name="Name" variant="label-hidden"> </lightning-output-field>
-                                <lightning-output-field field-name={addInfoFieldApiName} variant="label-hidden"> </lightning-output-field>
-                              </lightning-record-view-form> -->
                               <span class={changeMarginOfRecord}>{record.Name}</span>
                                 <template if:true={record.AddInfoData}>
-                                  <span class="slds-listbox__option-meta slds-m-left_xxx-small slds-listbox__option-meta_entity">{addInfoFieldApiName}: {record.AddInfoData}</span>
+                                  <span class="slds-listbox__option-meta slds-m-left_xxx-small slds-listbox__option-meta_entity">{record.AddInfoData}</span>
                                 </template>
-                              <!-- <span class="slds-listbox__option-text slds-text-heading_small slds-listbox__option-text_entity slds_optiontxt">{record.AddInfoData}</span> -->
-                              <!-- <template if:true={record.Phone}>
-                                <span class="slds-listbox__option-text slds-listbox__option-text_entity slds_optiontxt">{record.Phone}</span>
-                              </template>
-                              <template if:true={record.Industry}>
-                                <span class="slds-listbox__option-text slds-listbox__option-text_entity slds_optiontxt">Industry: {record.Industry}</span>
-                              </template>
-                              <template if:true={record.BillingCity}>
-                                <span class="slds-listbox__option-text slds-listbox__option-text_entity slds_optiontxt">City: {record.BillingCity}</span>
-                              </template>
-                              <template if:true={record.Email}>
-                                <span class="slds-listbox__option-text slds-listbox__option-text_entity slds_optiontxt">Email: {record.Email}</span>
-                              </template>
-                              <template if:true={record.Title}>
-                                <span class="slds-listbox__option-text slds-listbox__option-text_entity slds_optiontxt">Title: {record.Title}</span>
-                              </template>
-                              <template if:true={record.Amount}>
-                                <span class="slds-listbox__option-text slds-listbox__option-text_entity slds_optiontxt">Amount: {record.Amount}$</span>
-                              </template>
-                              <template if:true={record.CloseDate}>
-                                <span class="slds-listbox__option-text slds-listbox__option-text_entity slds_optiontxt">Close Date: {record.CloseDate}</span>
-                              </template>
-                              <template if:true={record.StageName}>
-                                <span class="slds-listbox__option-text slds-listbox__option-text_entity slds_optiontxt">Stage: {record.StageName}</span>
-                              </template> -->
+                              
                             </span>
                           </div>
                         </li>
@@ -114,12 +83,6 @@
                 </div>
               </div>
             </div>
-            <!-- <c-filter 
-                  onselect={handleSelect}
-            ></c-filter>
-            <c-filter-change-object
-                  onselect ={handleChooseObject}
-            ></c-filter-change-object> -->
           </div>
         </div>
     </div>

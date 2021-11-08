@@ -24,6 +24,8 @@ export default class FilterChangeObject extends LightningElement {
     //     this.dispatchEvent(selectEvent);
     // }
 
+    // Доставать все объекты, c бэка
+
     handleChangeObjects(event) {
         const payload = { chosenObject: event.target.value };
         // console.log(event.target.value, 'changeObject');

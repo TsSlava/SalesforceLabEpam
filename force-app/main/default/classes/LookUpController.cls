@@ -10,6 +10,7 @@ public with sharing class LookUpController {
         String fields = String.join(fieldsList, ', ');
         return Database.query('SELECT ' + fields + ' FROM ' + sObjectName + ' WHERE Name LIKE :key ORDER BY Name LIMIT 7');
 
+        //format method чтобы убрать плюсы
     }
 }
  

@@ -30,8 +30,6 @@ export default class Lookups extends LightningElement {
 
     @track flag = false;
 
-    // boxClass = 'slds-combobox slds-m-left_small slds-m-right_small slds-dropdown-trigger slds-dropdown-trigger_click';
-
     @wire(getRecordList, {
         sObjectName : '$sObjectApiName', 
         addInfo : '$addInfoFieldApiName',
@@ -41,14 +39,10 @@ export default class Lookups extends LightningElement {
         data, error
     }) {
         if(data) {
-            this.records = [];
-            for(let i = 0; i < data.length; i++) {
-                this.records[i] = {
-                    Id : data[i].Id,
-                    Name : data[i].Name,
-                    AddInfoData : data[i][this.addInfoFieldApiName]
-                }
-            }
+            this.records = data.map(element => {
+                const {Id, Name } = element;
+                return {Id, Name, AddInfoData : element[this.addInfoFieldApiName]};
+            });
         } else if (error) {
             this.error = error;
         }
@@ -67,26 +61,13 @@ export default class Lookups extends LightningElement {
     // }
 
     get boxClass() {
-        if(this.flag){
-            return 'slds-combobox slds-m-left_small slds-m-right_small slds-dropdown-trigger slds-dropdown-trigger_click slds-is-open';
-        } else {
-            return 'slds-combobox slds-m-left_small slds-m-right_small slds-dropdown-trigger slds-dropdown-trigger_click';
-        }
+        return 'slds-combobox slds-m-left_small slds-m-right_small slds-dropdown-trigger slds-dropdown-trigger_click ' +
+            (this.flag ? 'slds-is-open' : '');
     }
 
     get selectValue() {
-        if (this.selectedRecord) {
-            // this.template.querySelector('input').disabled = false;
-            return this.selectedRecord.Name;
-        } else {
-            return this.searchKey;
-        }
+        return this.selectedRecord ? this.selectedRecord.Name : this.searchKey;
     }
-
-    // set changeBoxClass(flag) {
-    //     this.boxClass = 'slds-combobox slds-m-left_small slds-m-right_small slds-dropdown-trigger slds-dropdown-trigger_click' +
-    //         (flag ? ' slds-is-open' : '');
-    // }
 
     // handleSelect(event) {
     //     const eventData = event.detail;
@@ -122,19 +103,14 @@ export default class Lookups extends LightningElement {
     }
 
     get changeMarginOfRecord() {
-        if(this.addInfoFieldApiName) {
-            return "slds-listbox__option-text slds-m-left_xxx-small slds-listbox__option-text_entity";
-        } else {
-            return "slds-listbox__option-text slds-m-left_xxx-small slds-m-top_x-small slds-listbox__option-text_entity";
-        }
+        const margin = 'slds-m-top_x-small';
+        return this.addInfoFieldApiName ? 'slds-listbox__option-text slds-m-left_xxx-small slds-listbox__option-text_entity' :
+            'slds-listbox__option-text slds-m-left_xxx-small slds-listbox__option-text_entity ' + margin;
     }
 
     get changeIconLocate() {
-        if(this.selectedRecord) {
-            return "slds-combobox__form-element slds-input-has-icon slds-input-has-icon_left-right";
-        } else {
-            return "slds-combobox__form-element slds-input-has-icon slds-input-has-icon_right"
-        }
+        return this.selectedRecord ? "slds-combobox__form-element slds-input-has-icon slds-input-has-icon_left-right" :
+            "slds-combobox__form-element slds-input-has-icon slds-input-has-icon_right"
     }
 
     connectedCallback() {
