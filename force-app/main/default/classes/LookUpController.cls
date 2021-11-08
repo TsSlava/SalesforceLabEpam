@@ -8,9 +8,10 @@ public with sharing class LookUpController {
             fieldsList.add(addInfo);
         }
         String fields = String.join(fieldsList, ', ');
-        return Database.query('SELECT ' + fields + ' FROM ' + sObjectName + ' WHERE Name LIKE :key ORDER BY Name LIMIT 7');
-
-        //format method чтобы убрать плюсы
+        String template = 'SELECT {0} FROM {1} WHERE Name LIKE :key ORDER BY Name LIMIT 7';
+        List<String> parameters = new List<String> {fields, sObjectName};
+        String queryFormatted = String.format(template, parameters);
+        return Database.query(queryFormatted);
     }
 }
  
