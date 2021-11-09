@@ -17,16 +17,30 @@ public with sharing class LookUpController {
     @AuraEnabled(Cacheable = true)
     public static List<String> getAllObjectList(){
         // return [SELECT SObjectType FROM ObjectPermissions GROUP BY SObjectType ORDER BY SObjectType ASC];
-        // List<String> objects = [SELECT SObjectType FROM ObjectPermissions GROUP BY SObjectType ORDER BY SObjectType ASC];
-        List<String> stdObjectNames = new List<String>();
-        for ( Schema.SObjectType typ : Schema.getGlobalDescribe().values() ) {
-	        String sobjName = String.valueOf(typ);
-		            stdObjectNames.add(sobjName);
-	                    
-                    
-                    System.debug('stdObjectNames: ' + stdObjectNames);
-                }
-                return stdObjectNames;
-            }
+        List<String> objectNames = new List<String>();
+        for ( Schema.SObjectType name : Schema.getGlobalDescribe().values() ) {
+	        String sObjName = String.valueOf(name);
+		        objectNames.add(sObjName);
+        }
+        return objectNames;
+    }
+
+    // @AuraEnabled(Cacheable = true)
+    // public static List<String> getAllObjectList(){ 
+    //     List<String> objectNames = new List<String>();
+    //     for (Schema.SObjectType objectName : Schema.getGlobalDescribe().Values()) {
+    //         Schema.sObjectType objectTypeName = Schema.getGlobalDescribe().get(objectName.getDescribe().getName());    
+    //         Map<String, Schema.SObjectField> mapFieldList = objectTypeName.getDescribe().fields.getMap();
+    //         for (Schema.SObjectField field : mapFieldList.values()) {    
+    //             Schema.DescribeFieldResult fieldResult = field.getDescribe(); 
+    //             String stringName = String.ValueOf(fieldResult.getName());
+    //             if (fieldResult.isAccessible() && stringName.equalsIgnoreCase('Name')) {
+    //                 String sObjectName = String.valueOf(objectTypeName);
+    //                 objectNames.add(sObjectName); 
+    //             }
+    //         }  
+    //     }
+    //     return objectNames;
+    // }
 }
  

@@ -39,10 +39,14 @@ export default class Lookups extends LightningElement {
         data, error
     }) {
         if(data) {
-            this.records = data.map(element => {
-                const {Id, Name } = element;
-                return {Id, Name, AddInfoData : element[this.addInfoFieldApiName]};
-            });
+            if(data.length > 0) {
+                this.records = data.map(element => {
+                    const {Id, Name } = element;
+                    return {Id, Name, AddInfoData : element[this.addInfoFieldApiName]};
+                });
+            } else {
+                this.records = null;
+            }
         } else if (error) {
             this.error = error;
         }
