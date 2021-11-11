@@ -37,20 +37,19 @@ export default class FilterChangeObject extends LightningElement {
     // }
 // }
 
-    ]
-
     @wire(getAllObjectList)
     getObjects({
         data, error
     }) {
         if(data) {
             this.objects = [];
-            for(let i = 0; i < data.length; i++) {
-                this.objects[i] = {
-                    label : data[i],
-                    value : data[i]
+            for(const item of data) {
+                this.objects[item] = {
+                    label : data[item],
+                    value : data[item]
                 }
             }
+            this.objects.sort();
         } else if (error) {
             this.error = error;
         }

@@ -33,13 +33,15 @@ public with sharing class LookUpController {
     //         Map<String, Schema.SObjectField> mapFieldList = objectTypeName.getDescribe().fields.getMap();
     //         for (Schema.SObjectField field : mapFieldList.values()) {    
     //             Schema.DescribeFieldResult fieldResult = field.getDescribe(); 
-    //             String stringName = String.ValueOf(fieldResult.getName());
-    //             if (fieldResult.isAccessible() && stringName.equalsIgnoreCase('Name')) {
+    //             String fieldName = String.ValueOf(fieldResult.getName());
+    //             if (fieldResult.isAccessible() && fieldName.equalsIgnoreCase('Name')) {
     //                 String sObjectName = String.valueOf(objectTypeName);
+    //                 System.debug('T ' + sObjectName);
     //                 objectNames.add(sObjectName); 
     //             }
     //         }  
     //     }
+    //     System.debug(objectNames);
     //     return objectNames;
     // }
 }

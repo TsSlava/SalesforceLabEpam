@@ -103,8 +103,6 @@ export default class Lookups extends LightningElement {
         } else if(message.chosenObject) {
             this.records = null;
             this.sObjectApiName = message.chosenObject;
-            // this.template.querySelector('input[data-id="lookup-input"]').value = '';
-            // this.selectedRecord = null;
             this.addInfoFieldApiName = null;
             this.searchKey = '';
         }
@@ -124,13 +122,8 @@ export default class Lookups extends LightningElement {
 
     handleSelect(event) {
         const elem = event.target.closest('.record');
-        // this.selectedRecord = this.records.data.find( record => record.Id === elem.dataset.id);
         this.selectedRecord = this.records.find( record => record.Id === elem.dataset.id);
         this.hideValuesBlock();
-        // console.log(JSON.parse(JSON.stringify(this.records.data)));
-        // console.log(elem.dataset.id);
-        // console.log(this.selectedRecord);
-        // console.log(elem.classList);
     }
 
     handleRemove(event) {
@@ -141,13 +134,11 @@ export default class Lookups extends LightningElement {
 
     showValuesBlock() {
 		this.isShowInputMenu = true;
-        // this.changeBoxClass = true;
         this.flag = true;
 	}
 
 	hideValuesBlock() {
 		this.isShowInputMenu = false;
-        // this.changeBoxClass = false;
         this.flag = false;
 	}
 }
