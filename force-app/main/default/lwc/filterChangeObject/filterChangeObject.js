@@ -43,13 +43,14 @@ export default class FilterChangeObject extends LightningElement {
     }) {
         if(data) {
             this.objects = [];
-            for(const item of data) {
-                this.objects[item] = {
-                    label : data[item],
-                    value : data[item]
+            const names = JSON.parse(JSON.stringify(data));
+            names.sort();
+            for(let i = 0; i < data.length; i++) {
+                this.objects[i] = {
+                    label : names[i],
+                    value : names[i]
                 }
             }
-            this.objects.sort();
         } else if (error) {
             this.error = error;
         }
@@ -63,8 +64,6 @@ export default class FilterChangeObject extends LightningElement {
     //     }); 
     //     this.dispatchEvent(selectEvent);
     // }
-
-    // Доставать все объекты, c бэка
 
     handleChangeObjects(event) {
         const payload = { chosenObject: event.target.value };

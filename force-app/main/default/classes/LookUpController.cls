@@ -16,11 +16,12 @@ public with sharing class LookUpController {
 
     @AuraEnabled(Cacheable = true)
     public static List<String> getAllObjectList(){
-        // return [SELECT SObjectType FROM ObjectPermissions GROUP BY SObjectType ORDER BY SObjectType ASC];
         List<String> objectNames = new List<String>();
         for ( Schema.SObjectType name : Schema.getGlobalDescribe().values() ) {
-	        String sObjName = String.valueOf(name);
-		        objectNames.add(sObjName);
+            DescribeSObjectResult dsr = name.getDescribe();
+            if(dsr.isAccessible() && dsr.isQueryable() && dsr.isSearchable()) {
+                objectNames.add(dsr.getName());
+            }
         }
         return objectNames;
     }
@@ -43,6 +44,16 @@ public with sharing class LookUpController {
     //     }
     //     System.debug(objectNames);
     //     return objectNames;
+    // }
+
+    // @AuraEnabled(Cacheable = true)
+    // public static List<String> getAllObjectList(){
+    //     // return [SELECT SObjectType FROM ObjectPermissions GROUP BY SObjectType ORDER BY SObjectType ASC];
+    //     Set<String> objectNames = new Set<String>();
+    //     for ( ObjectPermissions item : [SELECT SObjectType FROM ObjectPermissions ORDER BY SObjectType ASC]) {
+	// 	    objectNames.add(item.SObjectType);
+    //     }
+    //     return new List<String>(objectNames);
     // }
 }
  
