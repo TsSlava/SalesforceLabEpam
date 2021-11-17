@@ -43,15 +43,6 @@ export default class Filter extends LightningElement {
         { label: '-None-', value: 'null'}
     ]
 
-    // handleChangeAddInfo(event) {
-    //     this.addInfoFieldApiName = event.detail.value;
-    //     event.preventDefault();
-    //     const selectEvent = new CustomEvent('select', {
-    //         detail: this.addInfoFieldApiName
-    //     }); 
-    //     this.dispatchEvent(selectEvent);
-    // }
-
     handleChangeAddInfo(event) {
         const payload = { addInfo: event.target.value };
 

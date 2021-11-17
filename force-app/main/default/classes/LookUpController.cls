@@ -25,35 +25,5 @@ public with sharing class LookUpController {
         }
         return objectNames;
     }
-
-    // @AuraEnabled(Cacheable = true)
-    // public static List<String> getAllObjectList(){ 
-    //     List<String> objectNames = new List<String>();
-    //     for (Schema.SObjectType objectName : Schema.getGlobalDescribe().Values()) {
-    //         Schema.sObjectType objectTypeName = Schema.getGlobalDescribe().get(objectName.getDescribe().getName());    
-    //         Map<String, Schema.SObjectField> mapFieldList = objectTypeName.getDescribe().fields.getMap();
-    //         for (Schema.SObjectField field : mapFieldList.values()) {    
-    //             Schema.DescribeFieldResult fieldResult = field.getDescribe(); 
-    //             String fieldName = String.ValueOf(fieldResult.getName());
-    //             if (fieldResult.isAccessible() && fieldName.equalsIgnoreCase('Name')) {
-    //                 String sObjectName = String.valueOf(objectTypeName);
-    //                 System.debug('T ' + sObjectName);
-    //                 objectNames.add(sObjectName); 
-    //             }
-    //         }  
-    //     }
-    //     System.debug(objectNames);
-    //     return objectNames;
-    // }
-
-    // @AuraEnabled(Cacheable = true)
-    // public static List<String> getAllObjectList(){
-    //     // return [SELECT SObjectType FROM ObjectPermissions GROUP BY SObjectType ORDER BY SObjectType ASC];
-    //     Set<String> objectNames = new Set<String>();
-    //     for ( ObjectPermissions item : [SELECT SObjectType FROM ObjectPermissions ORDER BY SObjectType ASC]) {
-	// 	    objectNames.add(item.SObjectType);
-    //     }
-    //     return new List<String>(objectNames);
-    // }
 }
  

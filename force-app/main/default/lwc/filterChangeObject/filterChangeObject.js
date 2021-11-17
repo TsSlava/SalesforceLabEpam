@@ -12,31 +12,6 @@ export default class FilterChangeObject extends LightningElement {
 
     objects;
 
-    // optionsOfObjects = [
-    //     { label: 'Account', value: 'Account' },
-    //     { label: 'Contact', value: 'Contact' },
-    //     { label: 'Opportunity', value: 'Opportunity' }
-
-    //     getRecords({
-    //         data, error
-    //     }) {
-    //         if(data) {
-    //             this.records = data.map(element => {
-    //                 const {Id, Name } = element;
-    //                 return {Id, Name, AddInfoData : element[this.addInfoFieldApiName]};
-    //             });
-    //         } else if (error) {
-    //             this.error = error;
-    //         }
-    //     }
-    //     for(let i = 0; i < data.length; i++) {
-    //         this.records[i] = {
-    //             Id : data[i].Id,
-    //             Name : data[i].Name,
-    //     AddInfoData : data[i][this.addInfoFieldApiName]
-    // }
-// }
-
     @wire(getAllObjectList)
     getObjects({
         data, error
@@ -56,18 +31,8 @@ export default class FilterChangeObject extends LightningElement {
         }
     }
 
-    // handleChangeObjects(event) {
-    //     this.value = event.detail.value;
-    //     event.preventDefault();
-    //     const selectEvent = new CustomEvent('select', {
-    //         detail: this.value
-    //     }); 
-    //     this.dispatchEvent(selectEvent);
-    // }
-
     handleChangeObjects(event) {
         const payload = { chosenObject: event.target.value };
-        // console.log(event.target.value, 'changeObject');
         const payload2 = { chosenObjectToFilter: event.target.value};
         console.log(this.objects);
 
