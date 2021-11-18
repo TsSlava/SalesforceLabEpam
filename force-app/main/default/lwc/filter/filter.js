@@ -1,79 +1,50 @@
-import { LightningElement, api, wire, track } from 'lwc';
-import { publish, subscribe, MessageContext } from 'lightning/messageService';
-import RECORD_SELECTED_CHANNEL from '@salesforce/messageChannel/Record_Selected__c';
+import { LightningElement, api } from 'lwc';
 
 export default class Filter extends LightningElement {
 
-    subscription = null;
-
+    @api
     addInfoFieldApiName;
 
-    @track
-    sObjectApiName = 'Account';
-
-    @wire(MessageContext)
-    messageContext;
-
-    @track
-    optionsAddInfo = [
-        { label: 'Phone', value: 'Phone' },
-        { label: 'Industry', value: 'Industry' },
-        { label: 'City', value: 'BillingCity' },
-        { label: '-None-', value: 'null'}
-    ];
+    @api
+    sObjectApiName;
 
     optionsAddInfoAccount = [
         { label: 'Phone', value: 'Phone' },
         { label: 'Industry', value: 'Industry' },
         { label: 'City', value: 'BillingCity' },
-        { label: '-None-', value: 'null'}
+        { label: '-None-', value: ''}
     ]
 
     optionsAddInfoContact = [
         { label: 'Phone', value: 'Phone'},
         { label: 'Title', value: 'Title'},
         { label: 'Email', value: 'Email'},
-        { label: '-None-', value: 'null'}
+        { label: '-None-', value: ''}
     ]
 
     optionsAddInfoOpportunity = [
         { label: 'Amount', value: 'Amount'},
         { label: 'Close Date', value: 'CloseDate'},
         { label: 'Stage', value: 'StageName'},
-        { label: '-None-', value: 'null'}
+        { label: '-None-', value: ''}
     ]
 
     handleChangeAddInfo(event) {
-        const payload = { addInfo: event.target.value };
+            this.addInfoFieldApiName = event.detail.value;
+            event.preventDefault();
+            const selectEvent = new CustomEvent('select', {
+                detail: this.addInfoFieldApiName
+            }); 
+            this.dispatchEvent(selectEvent);
+        }
 
-        publish(this.messageContext, RECORD_SELECTED_CHANNEL, payload);
-    }
-
-    subscribeToMessageChannel() {
-
-        this.subscription = subscribe(
-            this.messageContext,
-            RECORD_SELECTED_CHANNEL,
-            (message) => this.handleMessage(message)
-        );
-        console.log(this.subscription);
-    }
-
-    handleMessage(message) {
-        if(message.chosenObjectToFilter) {
-            this.sObjectApiName = message.chosenObjectToFilter;
-            if(this.sObjectApiName == 'Account') {
-                this.optionsAddInfo = this.optionsAddInfoAccount;
-            } else if (this.sObjectApiName == 'Contact') {
-                this.optionsAddInfo = this.optionsAddInfoContact;
-            } else if (this.sObjectApiName == 'Opportunity') {
-                this.optionsAddInfo = this.optionsAddInfoOpportunity;
-            }
+    get optionsAddInfo() {
+        if(this.sObjectApiName == 'Account') {
+            return this.optionsAddInfoAccount;
+        } else if(this.sObjectApiName == 'Contact') {
+            return this.optionsAddInfoContact;
+        } else if(this.sObjectApiName == 'Opportunity') {
+            return this.optionsAddInfoOpportunity;
         }
     }
-
-    connectedCallback() {
-        this.subscribeToMessageChannel();
-    }
-
 }

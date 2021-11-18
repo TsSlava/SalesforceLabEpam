@@ -1,5 +1,7 @@
 <template>
-    <c-look-Up s-object-api-name="Account"></c-look-Up>
-    <c-filter></c-filter>
-    <c-filter-change-object></c-filter-change-object>
-</template>
+    <c-look-Up s-object-api-name={sObjectApiName}
+            add-info-field-api-name={addInfo}
+    ></c-look-Up>
+    <c-filter s-object-api-name={sObjectApiName} onselect={passAddInfo}></c-filter>
+    <c-filter-change-object onselect={passNewObject}></c-filter-change-object>
+</template> 

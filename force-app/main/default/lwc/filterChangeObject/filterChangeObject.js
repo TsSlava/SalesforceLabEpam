@@ -1,15 +1,9 @@
 import { LightningElement, wire } from 'lwc';
-import { publish, MessageContext } from 'lightning/messageService';
 import getAllObjectList from '@salesforce/apex/LookUpController.getAllObjectList';
-import RECORD_SELECTED_CHANNEL from '@salesforce/messageChannel/Record_Selected__c';
 
 export default class FilterChangeObject extends LightningElement {
 
     value;
-
-    @wire(MessageContext)
-    messageContext;
-
     objects;
 
     @wire(getAllObjectList)
@@ -32,12 +26,11 @@ export default class FilterChangeObject extends LightningElement {
     }
 
     handleChangeObjects(event) {
-        const payload = { chosenObject: event.target.value };
-        const payload2 = { chosenObjectToFilter: event.target.value};
-        console.log(this.objects);
-
-        publish(this.messageContext, RECORD_SELECTED_CHANNEL, payload);
-        publish(this.messageContext, RECORD_SELECTED_CHANNEL, payload2);
-
+        this.value = event.detail.value;
+        event.preventDefault();
+        const selectEvent = new CustomEvent('select', {
+            detail: this.value
+        }); 
+        this.dispatchEvent(selectEvent);
     }
 }

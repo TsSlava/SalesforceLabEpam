@@ -19,7 +19,7 @@ public with sharing class LookUpController {
         List<String> objectNames = new List<String>();
         for ( Schema.SObjectType name : Schema.getGlobalDescribe().values() ) {
             DescribeSObjectResult dsr = name.getDescribe();
-            if(dsr.isAccessible() && dsr.isQueryable() && dsr.isSearchable()) {
+            if(dsr.isAccessible() && dsr.isSearchable()) {
                 objectNames.add(dsr.getName());
             }
         }

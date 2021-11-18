@@ -1,19 +1,12 @@
 import { LightningElement, wire, api, track } from 'lwc';
-import { subscribe, MessageContext } from 'lightning/messageService';
-import RECORD_SELECTED_CHANNEL from '@salesforce/messageChannel/Record_Selected__c';
 import getRecordList from '@salesforce/apex/LookUpController.getRecordList';
 
 export default class Lookups extends LightningElement {
 
-    subscription = null;
+    @api
+    sObjectApiName;
 
     @api
-    sObjectApiName = 'Account';
-
-    @wire(MessageContext)
-    messageContext;
-
-    @track
     addInfoFieldApiName = '';
 
     @track
@@ -28,7 +21,8 @@ export default class Lookups extends LightningElement {
     @track 
     error;
 
-    @track flag = false;
+    @track 
+    flag = false;
 
     @wire(getRecordList, {
         sObjectName : '$sObjectApiName', 
@@ -72,31 +66,19 @@ export default class Lookups extends LightningElement {
         return this.selectedRecord ? this.selectedRecord.Name : this.searchKey;
     }
 
-    subscribeToMessageChannel() {
-        this.subscription = subscribe(
-            this.messageContext,
-            RECORD_SELECTED_CHANNEL,
-            (message) => this.handleMessage(message)
-        );
-    }
-
-    handleMessage(message) {
-        if(message.addInfo) {
-            this.addInfoFieldApiName = message.addInfo;
-            if(message.addInfo == 'null') {
-                this.addInfoFieldApiName = null;
-            }
-        } else if(message.chosenObject) {
-            this.records = null;
-            this.sObjectApiName = message.chosenObject;
-            this.addInfoFieldApiName = null;
-            this.searchKey = '';
-        }
-    }
-
-    connectedCallback() {
-        this.subscribeToMessageChannel();
-    }
+    // handleMessage(message) {
+    //     if(message.addInfo) {
+    //         this.addInfoFieldApiName = message.addInfo;
+    //         if(message.addInfo == 'null') {
+    //             this.addInfoFieldApiName = null;
+    //         }
+    //     } else if(message.chosenObject) {
+    //         this.records = null;
+    //         this.sObjectApiName = message.chosenObject;
+    //         this.addInfoFieldApiName = null;
+    //         this.searchKey = '';
+    //     }
+    // }
 
     handleChange(event) {
         window.clearTimeout(this.delayTimeout);
