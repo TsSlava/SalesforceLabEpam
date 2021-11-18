@@ -66,20 +66,6 @@ export default class Lookups extends LightningElement {
         return this.selectedRecord ? this.selectedRecord.Name : this.searchKey;
     }
 
-    // handleMessage(message) {
-    //     if(message.addInfo) {
-    //         this.addInfoFieldApiName = message.addInfo;
-    //         if(message.addInfo == 'null') {
-    //             this.addInfoFieldApiName = null;
-    //         }
-    //     } else if(message.chosenObject) {
-    //         this.records = null;
-    //         this.sObjectApiName = message.chosenObject;
-    //         this.addInfoFieldApiName = null;
-    //         this.searchKey = '';
-    //     }
-    // }
-
     handleChange(event) {
         window.clearTimeout(this.delayTimeout);
         const searchKey = event.target.value;
