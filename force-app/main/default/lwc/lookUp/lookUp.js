@@ -7,7 +7,7 @@ export default class Lookups extends LightningElement {
     sObjectApiName;
 
     @api
-    addInfoFieldApiName = '';
+    addInfoFieldApiName;
 
     @track
     searchKey = '';
@@ -32,12 +32,21 @@ export default class Lookups extends LightningElement {
     getRecords({
         data, error
     }) {
+        console.log('yes' + data);
+        console.log(error);
         if(data) {
             if(data.length > 0) {
                 this.records = data.map(element => {
-                    const {Id, Name } = element;
+                    const {Id, Name} = element;
+                    console.log(element[this.addInfoFieldApiName[0]]);
+                    console.log(element[this.addInfoFieldApiName[1]]);
                     return {Id, Name, AddInfoData : element[this.addInfoFieldApiName]};
-                });
+                    // return {Id : element.Id, Name : element.Name, AddInfoData : element[this.addInfoFieldApiName]};
+
+                })
+                console.log(this.records);
+                console.log(this.addInfoFieldApiName[0]);
+                ;
             } else {
                 this.records = null;
             }
