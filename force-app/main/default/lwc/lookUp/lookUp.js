@@ -21,6 +21,9 @@ export default class Lookups extends LightningElement {
     @track 
     error;
 
+    @track
+    addInfoFields;
+
     @track 
     flag = false;
 
@@ -38,14 +41,19 @@ export default class Lookups extends LightningElement {
             if(data.length > 0) {
                 this.records = data.map(element => {
                     const {Id, Name} = element;
-                    console.log(element[this.addInfoFieldApiName[0]]);
-                    console.log(element[this.addInfoFieldApiName[1]]);
-                    return {Id, Name, AddInfoData : element[this.addInfoFieldApiName]};
-                    // return {Id : element.Id, Name : element.Name, AddInfoData : element[this.addInfoFieldApiName]};
-
+                    const addInfoData = [];
+                    for(let i = 0; i < this.addInfoFieldApiName.length; i++) {
+                        addInfoData[i] = element[this.addInfoFieldApiName[i]];
+                        console.log(element[this.addInfoFieldApiName[i]]);
+                    }
+                    console.log('addInfoData' + addInfoData);
+                    // return {Id, Name};
+                    // return {Id, Name, AddInfoData : element[this.addInfoFieldApiName]};
+                    return {Id : element.Id, Name : element.Name, AddInfoData : addInfoData};
                 })
                 console.log(this.records);
-                console.log(this.addInfoFieldApiName[0]);
+                // console.log(this.records.AddInfoData);
+                // console.log(this.addInfoFieldApiName[0]);
                 ;
             } else {
                 this.records = null;
