@@ -67,20 +67,20 @@
                                 </lightning-icon>            
                             <span class="slds-media__body">
                               <span class={changeMarginOfRecord}>{record.Name}</span>
-                                <!-- <template if:true={record.AddInfoData}>
-                                  <span class="slds-listbox__option-meta slds-m-left_xxx-small slds-listbox__option-meta_entity">{record.AddInfoData}</span>
-                                </template>  -->
-
-
-
-
                                 <template if:true={record.AddInfoData}>
+                                  <span class="slds-listbox__option-meta slds-m-left_xxx-small slds-listbox__option-meta_entity">{record.AddInfoData}</span>
+                                </template> 
+
+
+
+
+                                <!-- <template if:true={record.AddInfoData}>
                                   <template for:each={record.AddInfoData} for:item="data">
                                     <li class="slds-listbox__item" key={data.Id}>
                                       <span class="slds-listbox__option-meta slds-m-left_xxx-small slds-listbox__option-meta_entity">{record.AddInfoData}</span>
                                     </li>
                                   </template>
-                                </template> 
+                                </template>  -->
 
 
 

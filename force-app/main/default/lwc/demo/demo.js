@@ -4,8 +4,6 @@ export default class Demo extends LightningElement {
 
     sObjectApiName = 'Account';
 
-    // addInfo = '';
-    // addInfo;
     addInfo = '';
 
 

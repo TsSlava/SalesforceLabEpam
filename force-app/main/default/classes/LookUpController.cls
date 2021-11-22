@@ -34,7 +34,10 @@ public with sharing class LookUpController {
         List<String> parameters = new List<String> {fields, sObjectName};
         String queryFormatted = String.format(template, parameters);
         System.debug(queryFormatted);
-        return Database.query(queryFormatted);
+        SObjectAccessDecision decision = Security.stripInaccessible(
+	                                   AccessType.READABLE,
+	                                   Database.query(queryFormatted));
+        return decision.getRecords();
     }
 
     @AuraEnabled(Cacheable = true)

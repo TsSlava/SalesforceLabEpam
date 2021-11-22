@@ -46,10 +46,13 @@ export default class Filter extends LightningElement {
 
     get optionsAddInfo() {
         if(this.sObjectApiName == 'Account') {
+            this.addInfoFieldApiName = [];
             return this.optionsAddInfoAccount;
         } else if(this.sObjectApiName == 'Contact') {
+            this.addInfoFieldApiName = [];
             return this.optionsAddInfoContact;
         } else if(this.sObjectApiName == 'Opportunity') {
+            this.addInfoFieldApiName = [];
             return this.optionsAddInfoOpportunity;
         }
     }
