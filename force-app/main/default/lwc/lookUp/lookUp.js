@@ -36,40 +36,41 @@ export default class Lookups extends LightningElement {
         data, error
     }) {
         if(data) {
-            if(data.length > 0) {
-                this.records = data.map(element => {
-                    const {Id, Name} = element;
-                    const addInfoData = [];
-                    for(let i = 0; i < this.addInfoFieldApiName.length; i++) {
-                        addInfoData[i] = ' ' + element[this.addInfoFieldApiName[i]];
-                    }
-                    return {Id, Name, AddInfoData : addInfoData};
-                });
-            } else {
-                this.records = null;
-            }
+            this.records = data.map(element => {
+                const {Id, Name} = element;
+                const addInfoData = [];
+                for(let i = 0; i < this.addInfoFieldApiName.length; i++) {
+                    addInfoData[i] = ' ' + element[this.addInfoFieldApiName[i]];
+                }
+                return {Id, Name, AddInfoData : addInfoData};
+            });
         } else if (error) {
             this.error = error;
         }
     }
 
     get boxClass() {
-        return 'slds-combobox slds-m-left_small slds-m-right_small slds-dropdown-trigger slds-dropdown-trigger_click ' +
-            (this.flag ? 'slds-is-open' : '');
+        return `slds-combobox slds-m-left_small slds-m-right_small \
+                slds-dropdown-trigger slds-dropdown-trigger_click ` +
+            (this.flag ? `slds-is-open` : ``);
     }
 
     get changeMarginOfRecord() {
-        const margin = 'slds-m-top_x-small';
-        return this.addInfoFieldApiName ? `slds-listbox__option-text slds-m-left_xxx-small slds-listbox__option-text_entity` :
-            `slds-listbox__option-text slds-m-left_xxx-small slds-listbox__option-text_entity ${margin}`;
+        const margin = `slds-m-top_x-small`;
+        return this.addInfoFieldApiName ? `slds-listbox__option-text slds-m-left_xxx-small \
+                                            slds-listbox__option-text_entity` :
+                                            `slds-listbox__option-text slds-m-left_xxx-small \
+                                            slds-listbox__option-text_entity ${margin}`;
     }
 
     get changeIconLocate() {
-        return this.selectedRecord ? 'slds-combobox__form-element slds-input-has-icon slds-input-has-icon_left-right' :
-            'slds-combobox__form-element slds-input-has-icon slds-input-has-icon_right'
+        return this.selectedRecord ? `slds-combobox__form-element slds-input-has-icon \
+                                        slds-input-has-icon_left-right` :
+                                        `slds-combobox__form-element slds-input-has-icon \
+                                        slds-input-has-icon_right`
     }
 
-    get selectValue() {
+    get gettingValue() {
         return this.selectedRecord ? this.selectedRecord.Name : this.searchKey;
     }
 
