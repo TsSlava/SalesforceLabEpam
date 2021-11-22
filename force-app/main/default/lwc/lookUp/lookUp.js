@@ -1,5 +1,5 @@
 import { LightningElement, wire, api, track } from 'lwc';
-import getRecordList from '@salesforce/apex/LookUpController.getRecordList';
+import getRecords from '@salesforce/apex/LookUpController.getRecords';
 
 export default class Lookups extends LightningElement {
 
@@ -27,7 +27,7 @@ export default class Lookups extends LightningElement {
     @track 
     flag = false;
 
-    @wire(getRecordList, {
+    @wire(getRecords, {
         sObjectName : '$sObjectApiName', 
         addInfo : '$addInfoFieldApiName',
         searchKey : '$searchKey'
@@ -43,7 +43,6 @@ export default class Lookups extends LightningElement {
                     for(let i = 0; i < this.addInfoFieldApiName.length; i++) {
                         addInfoData[i] = ' ' + element[this.addInfoFieldApiName[i]];
                     }
-                    console.log(addInfoData);
                     return {Id, Name, AddInfoData : addInfoData};
                 });
             } else {

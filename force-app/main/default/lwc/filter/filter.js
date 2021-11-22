@@ -31,12 +31,9 @@ export default class Filter extends LightningElement {
 
     handleChangeAddInfo(event) {
             this.addInfoFieldApiName.push(event.detail.value);
-            console.log(this.addInfoFieldApiName);
-            // this.addInfoFieldApiName = event.detail.value;
             if(event.detail.value == '') {
                 this.addInfoFieldApiName = [];
             }
-            console.log(this.addInfoFieldApiName);
             event.preventDefault();
             const selectEvent = new CustomEvent('select', {
                 detail: this.addInfoFieldApiName

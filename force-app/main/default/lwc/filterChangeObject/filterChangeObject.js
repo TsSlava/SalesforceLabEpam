@@ -1,25 +1,22 @@
 import { LightningElement, wire } from 'lwc';
-import getAllObjectList from '@salesforce/apex/LookUpController.getAllObjectList';
+import getQueriableSObjectApiNames from '@salesforce/apex/LookUpController.getQueriableSObjectApiNames';
 
 export default class FilterChangeObject extends LightningElement {
 
     value;
     objects;
 
-    @wire(getAllObjectList)
+    @wire(getQueriableSObjectApiNames)
     getObjects({
         data, error
     }) {
         if(data) {
             this.objects = [];
-            const names = JSON.parse(JSON.stringify(data));
-            names.sort();
-            for(let i = 0; i < data.length; i++) {
-                this.objects[i] = {
-                    label : names[i],
-                    value : names[i]
-                }
-            }
+            const arrayOfObjects = Array.from(data);
+            arrayOfObjects.sort();
+            this.objects = arrayOfObjects.map(element => {
+                return { label : element, value : element}
+            })
         } else if (error) {
             this.error = error;
         }
