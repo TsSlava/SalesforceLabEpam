@@ -40,7 +40,7 @@ export default class Lookups extends LightningElement {
                 const {Id, Name} = element;
                 const addInfoData = [];
                 for(let i = 0; i < this.addInfoFieldApiName.length; i++) {
-                    addInfoData[i] = ' ' + element[this.addInfoFieldApiName[i]];
+                    addInfoData[i] = element[this.addInfoFieldApiName[i]];
                 }
                 return {Id, Name, AddInfoData : addInfoData};
             });
@@ -51,8 +51,8 @@ export default class Lookups extends LightningElement {
 
     get boxClass() {
         return `slds-combobox slds-m-left_small slds-m-right_small \
-                slds-dropdown-trigger slds-dropdown-trigger_click ` +
-            (this.flag ? `slds-is-open` : ``);
+                slds-dropdown-trigger slds-dropdown-trigger_click \
+            ${this.flag ? 'slds-is-open' : ''}`;
     }
 
     get changeMarginOfRecord() {
@@ -95,12 +95,12 @@ export default class Lookups extends LightningElement {
     }
 
     showValuesBlock() {
-		this.isShowInputMenu = true;
+        this.isShowInputMenu = true;
         this.flag = true;
-	}
+    }
 
-	hideValuesBlock() {
-		this.isShowInputMenu = false;
+    hideValuesBlock() {
+        this.isShowInputMenu = false;
         this.flag = false;
-	}
+    }
 }
