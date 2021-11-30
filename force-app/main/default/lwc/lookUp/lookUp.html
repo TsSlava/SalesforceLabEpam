@@ -1,0 +1,90 @@
+<template>
+  <div if:true={isShowInputMenu} class="backdrop" onclick={hideValuesBlock}></div>
+  <lightning-card>
+    <div class="slds-form-element">
+      <label 
+        class="slds-form-element__label label" 
+        for="combobox-id-1" 
+        id="combobox-label-id-33" 
+        >Relate To
+      </label>
+        <div class="slds-form-element__control">
+          <div class="slds-combobox_container">
+            <div class={boxClass} aria-expanded="true" aria-haspopup="listbox" role="combobox" >
+              <div class={changeIconLocate} role="none">
+                <div class="defaultClass">
+                  <input 
+                    type="text" 
+                    class="slds-input slds-combobox__input" 
+                    id="combobx-id-1" 
+                    onclick={showValuesBlock}
+                    oninput={handleChange}
+                    aria-autocomplete="list" 
+                    aria-controls="listbox-id-1" 
+                    aria-expanded="false" 
+                    aria-haspopup="listbox" 
+                    autocomplete="off" 
+                    value={gettingValue}
+                    role="combobox" 
+                    placeholder="Search...">
+                      <span if:false={selectedRecord} class="slds-icon_container">
+                        <lightning-icon 
+                                    icon-name="utility:search" 
+                                    class="slds-icon-utility-search slds-input__icon slds-input__icon_right slds-searchIcon" 
+                                    alternative-text="Approved" size="x-small"></lightning-icon>
+                      </span>
+                      <span if:true={selectedRecord}>
+                        <lightning-icon 
+                                    icon-name="standard:record" 
+                                    class="slds-icon_container slds-input__icon slds-input__icon_left slds-icon-standard-record" 
+                                    alternative-text="Record" size="xx-small">
+                        </lightning-icon>
+                        <button class="sicon_container slds-button slds-button_icon 
+                                   slds-input__icon slds-input__icon_right" 
+                                title="Remove selected option"
+                                onclick={handleRemove}>
+                        <lightning-icon icon-name="utility:close" size="x-small"></lightning-icon>
+                        <span class="slds-assistive-text">Remove selected record</span>
+                        </button>
+                      </span>
+                </div>
+                <div if:true={isShowInputMenu} id="listbox-id-1" class="slds-dropdown slds-dropdown_length-with-icon-7 slds-dropdown_fluid" role="listbox">
+                  <ul class="slds-listbox slds-listbox_vertical" role="presentation">
+                    <template if:true={records}>
+                      <template for:each={records} for:item="record">
+                        <li role="presentation" class="slds-listbox__item" key={record.Id}>
+                          <div
+                              aria-selected="true" 
+                              data-id={record.Id}
+                              class="record slds-media slds-listbox__option slds-listbox__option_entity slds-listbox__option_has-meta" 
+                              role="option" 
+                              tabindex="0"
+                              onclick={handleSelect}>
+                              <lightning-icon 
+                                            icon-name="standard:record"
+                                            alternative-text="Record"
+                                            title="Record">
+                                </lightning-icon>            
+                            <span class="slds-media__body">
+                              <span class={changeMarginOfRecord}>{record.Name}</span>
+                                <template if:true={record.AddInfoData}>
+                                  <span class="slds-listbox__option-meta slds-m-left_xxx-small slds-listbox__option-meta_entity">{record.AddInfoData}</span>
+                                </template> 
+                            </span>
+                          </div>
+                        </li>
+                      </template>
+                    </template>
+                    <template if:false={records}>
+                      <div>There are no any records with Name field</div>
+                    </template>
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+    </div>
+  </lightning-card>
+</template>
+  
