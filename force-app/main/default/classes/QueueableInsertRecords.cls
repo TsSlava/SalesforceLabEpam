@@ -8,13 +8,6 @@ public with sharing class QueueableInsertRecords implements Queueable{
  
 
     public void execute(QueueableContext context){
-        
-        // if(count < 100000) {
-        //     AddRecords ad= new AddRecords();
-        //     ad.addNewRecords();
-        // }
-
-
         try {
             Database.insertImmediate(testsList);
         } catch (Exception e) {

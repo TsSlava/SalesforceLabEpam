@@ -63,7 +63,7 @@ public class BatchInsertRecords implements Database.Batchable<SObject>, Database
             count++;
         }
         System.debug('From bathc: ' + count);
-        if(count < 100000) {
+        if(count < 5000000) {
             AddRecords ad= new AddRecords();
             ad.addNewRecords();
         }
